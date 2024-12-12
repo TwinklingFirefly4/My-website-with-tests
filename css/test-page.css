@@ -1,0 +1,264 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+@font-face {
+  /*подключаем шрифты*/
+  font-family: raleway_f; /*суффикс _f указывается (любой), для того, чтобы шрифты не подгружались из системы, а брались ислючительно из нашей папки*/
+  src: url(../fonts/raleway-regular.woff2);
+}
+@font-face {
+  font-family: raleway_f;
+  src: url(../fonts/raleway-black.woff2);
+  font-weight: 900;
+}
+body{
+  font-family: raleway_f, sans-serif;
+  height:100vh;
+  width:100%;
+  color:white;
+  /* overflow: hidden; */
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: url(../my-img/fullSizeImg/ethereal-natural-environment\ \(2\).jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+nav{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 101;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.nav-left, .nav-right{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+.nav-right a{
+  text-decoration: none;
+  color:white;
+}
+.icon{
+  width:20px;
+  height: 20px;
+}
+nav div a::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #ffe047;
+  display: block;
+  margin: auto;
+  transition: width 1s ease;
+}
+nav div a:hover::after {
+  width: 100%;
+}
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items:start;
+  justify-content: center;
+  width: 60%;  
+}
+.container{
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  margin-top: 10px;
+}
+.question{
+  font-size: 1.3rem;
+  background-color: rgba(0, 62, 31, 0.50);
+  width:100%;
+  padding:0.3rem;
+  border-radius: 10px;
+}
+img{
+  width:100%;
+  height: auto;  
+  object-fit: cover;
+}
+.image{
+  flex:5;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.options{
+  flex:3;
+  border: 2px solid rgba(0, 62, 31, 0.50);
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  row-gap: 2px;
+}
+.option{
+  flex: 1;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  padding:0.5rem;
+  text-align: center;
+  background-color: rgba(0, 62, 31, 0.704);
+  cursor:pointer;  
+}
+.option:hover{
+  color:#FFE047;
+}
+.option.active {
+  color: #FFE047;
+  border-left: 2px solid #FFE047;
+  border-right: 2px solid #FFE047;
+}
+
+/* стили для радиокнопок */
+input[type="radio"] {
+  display: none;
+}
+
+
+
+
+.next-question{
+  flex:0.3;
+  height: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 62, 31, 0.50);
+}
+.next-question img{
+  opacity: 0.7;
+}
+.next-question-active{
+  background-color: rgba(0, 62, 31, 0.7);
+  cursor: pointer;
+}
+.next-question-active img{
+  opacity: 1;
+}
+.container, .image, .options, .next-question{
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+
+
+
+/* .main-nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 101;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  
+  .nav-left,
+  .nav-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: calc(var(--index) * 2);
+    color: #fff;
+    text-decoration: none;
+  }
+  nav div a,
+  nav button {
+    font-size: calc(var(--index) * 1.2);
+  }
+  nav div a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #ffe047;
+    display: block;
+    margin: auto;
+    transition: width 1s ease;
+  }
+  nav div a:hover::after {
+    width: 100%;
+  }
+  .sign-in-a:hover::after {
+    width: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .sign-in-a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-right button,
+  .nav-a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: calc(var(--index) * 2);
+  }
+  
+  .custom-button {
+    position: relative;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+  }
+  
+  .custom-button::before,
+  .custom-button::after {
+    content: "";
+    position: absolute;
+    background-color: #ffe047;
+    transition: transform 1s ease;
+  }
+  
+  .custom-button::before,
+  .custom-button::after {
+    width: 100%;
+    height: 2px;
+  }
+  
+  .custom-button::before {
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  
+  .custom-button::after {
+    bottom: 0;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  
+  .custom-button:hover::before,
+  .custom-button:hover::after {
+    transform: scale(1);
+  }
+   */

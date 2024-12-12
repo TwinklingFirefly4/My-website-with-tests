@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="my-img/icons/icons8-firefly-58.png">
+    <link rel="stylesheet" href="css/results.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <!-- for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+    <title>Your results</title>
+    <script src="js/navigation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- <script src="js/results.js" defer></script> -->
+  </head>
+  <body>
+    <div id="navigation-placeholder"></div>
+    <div class="main-container">
+      <div class="content">
+        <div class="name">Какой ты программист</div>
+        <div class="container">
+          <div class="results">
+            <div class="test-details">
+              <p class="standart-label">
+                Пройдено: <span class="time">08.12.2024 22:29</span>
+              </p>
+              <p class="standart-label">
+                Режим: <span class="mode-name">Викторина</span>
+              </p>
+              <p class="standart-label">
+                Автор: <span class="author-name">Сумрак Тьмы</span>
+              </p>
+            </div>
+            <div class="additionaly">
+              <button class="to-test">
+                <img src="my-img/icons/quiz.svg" alt="" />
+                <a href="test-page.html">К тесту</a>
+              </button>
+              <button class="statistics">
+                <img src="my-img/icons/statistic.svg" alt="" />
+                <a href="#">Статистика</a>
+              </button>
+            </div>
+            <div class="result-label">Результат</div>
+            <div class="result">
+              <img src="my-img/fullSizeImg/three-moons-and-stars.jpg" id="result-image" alt="" />
+              <div class="answer-details">
+                <p class="main-result" id="main-result"></p>
+                <!-- <p class="main-result"><span class="message"></span><span id="scoreDisplay"></span></p> -->
+                <p class="result-comments" id="result-comments"></p>
+                </p>
+              </div>
+            </div>
+            <div class="answers-label">Вопросы и ответы</div>
+            <div class="answers" id="resultsContainer">
+              <!-- СЕКЦИЯ С ОТВЕТАМИ -->
+              <!-- <div class="answer">
+                <img
+                  src="my-img/fullSizeImg/bamboo-forest-with-fireflies.webp"
+                />
+                //ТУТ РАЗОБРАТЬСЯ, ЧТОБЫ answer-status БЫЛ В САМОМ НИЗУ ->test-page
+                <div class="details">
+                  <div class="question">
+                    <span class="standart-label"
+                      >Вопрос #<span class="question-number">1</span></span
+                    >:
+                    <span class="question-text">Текст вопроса</span>
+                  </div>
+                  <div class="your-answer">
+                    <span class="standart-label">Вы ответили:</span>
+                    <span class="answer-text">Ваш ответ</span>
+                  </div>
+                  <div class="correct-answer">
+                    <span class="standart-label">Правильный ответ:</span>
+                    <span class="correct-answer-text">Правильный ответ</span>
+                  </div>
+                </div>
+                <div class="answer-status right">Правильный ответ</div>
+              </div>
+              <div class="answer">
+                <img
+                  src="my-img/fullSizeImg/christmas-tree-made-toys-background-colorful-bokeh.jpg"
+                />
+                <div class="details">
+                  <div class="question">
+                    <span class="standart-label"
+                      >Вопрос #<span class="question-number">1</span></span
+                    >:
+                    <span class="question-text">Текст вопроса</span>
+                  </div>
+                  <div class="your-answer">
+                    <span class="standart-label">Вы ответили:</span>
+                    <span class="answer-text">Ваш ответ</span>
+                  </div>
+                  <div class="correct-answer">
+                    <span class="standart-label">Правильный ответ:</span>
+                    <span class="correct-answer-text">Правильный ответ</span>
+                  </div>
+                </div>
+                <div class="answer-status wrong">Неправильный ответ</div>
+              </div>
+              <div class="answer">
+                <img src="my-img/fullSizeImg/forest-with-fireflies-night.jpg" />
+                <div class="details">
+                  <div class="question">
+                    <span class="standart-label"
+                      >Вопрос #<span class="question-number">1</span></span
+                    >:
+                    <span class="question-text">Текст вопроса</span>
+                  </div>
+                  <div class="your-answer">
+                    <span class="standart-label">Вы ответили:</span>
+                    <span class="answer-text">Ваш ответ</span>
+                  </div>
+                  <div class="correct-answer">
+                    <span class="standart-label">Правильный ответ:</span>
+                    <span class="correct-answer-text">Правильный ответ</span>
+                  </div>
+                </div>
+                <div class="answer-status right">Правильный ответ</div>
+              </div>
+              <div class="answer">
+                <img src="my-img/fullSizeImg/deap-forest-with-fireflies.jpg" />
+                <div class="details">
+                  <div class="question">
+                    <span class="standart-label"
+                      >Вопрос #<span class="question-number">1</span></span
+                    >:
+                    <span class="question-text">Текст вопроса</span>
+                  </div>
+                  <div class="your-answer">
+                    <span class="standart-label">Вы ответили:</span>
+                    <span class="answer-text">Ваш ответ</span>
+                  </div>
+                  <div class="correct-answer hidden">
+                    <span class="standart-label">Правильный ответ:</span>
+                    <span class="correct-answer-text">Правильный ответ</span>
+                  </div>
+                </div>
+                <div class="answer-status right">Правильный ответ</div>
+              </div> -->
+            </div>
+          </div>
+          <!-- СЕКЦИЯ КОММЕНТАРИЕВ -->
+          <div class="comments-container">
+            <div class="standart-label">Поделиться:</div>
+            <div class="social-icons">
+              <a href="#" class="icon"
+                ><i class="fa-brands fa-google-plus-g"></i
+              ></a>
+              <a href="#" class="icon"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+              <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+              <a href="#" class="icon"><i class="fa-brands fa-vk"></i></a>
+            </div>
+            <div class="standart-label">Оставить комментарий</div>
+            <div class="comment-form">
+              <textarea placeholder="Введите ваш комментарий"></textarea>
+              <button type="submit">Отправить</button>
+            </div>
+            <div class="standart-label">Лучшие комментарии</div>
+            <div class="comments">
+              <div class="comment">
+                <div class="comment-header">
+                  <span class="comment-author">Автор 1</span>
+                  <span class="comment-time">10 минут назад</span>
+                </div>
+                <div class="comment-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi hic explicabo odio omnis laborum! Magnam dicta laudantium eligendi soluta, natus itaque ratione ullam ex ipsam totam necessitatibus beatae ab in.</div>
+                <div class="comment-actions">
+                    <div class="like">
+                        <img src="my-img/icons/like.svg" />
+                        4
+                      </div>
+                      <div class="like">
+                        <img src="my-img/icons/dislike.svg" />0
+                      </div>
+                </div>
+              </div>
+              <div class="comment">
+                <div class="comment-header">
+                  <span class="comment-author">Автор 2</span>
+                  <span class="comment-time">15 минут назад</span>
+                </div>
+                <div class="comment-text">Можно было и лучше</div>
+                <div class="comment-actions">
+                    <div class="like">
+                        <img src="my-img/icons/like.svg" />
+                        4
+                      </div>
+                      <div class="like">
+                        <img src="my-img/icons/dislike.svg" />0
+                      </div>
+                </div>
+              </div>
+              <div class="comment">
+                <div class="comment-header">
+                  <span class="comment-author">Автор 3</span>
+                  <span class="comment-time">20 минут назад</span>
+                </div>
+                <div class="comment-text">Куда уже лучше</div>
+                <div class="comment-actions">
+                  <div class="like">
+                    <img src="my-img/icons/like.svg" />
+                    4
+                  </div>
+                  <div class="like">
+                    <img src="my-img/icons/dislike.svg" />0
+                  </div>
+                </div>
+              </div>
+              <div class="comment">
+                <div class="comment-header">
+                  <span class="comment-author">Автор 4</span>
+                  <span class="comment-time">25 минут назад</span>
+                </div>
+                <div class="comment-text">Разрабу респект</div>
+                <div class="comment-actions">
+                    <div class="like">
+                        <img src="my-img/icons/like.svg" />
+                        4
+                      </div>
+                      <div class="like">
+                        <img src="my-img/icons/dislike.svg" />0
+                      </div>
+                </div>
+              </div>
+            </div>
+            <div class="unauthorized-message">
+              Только авторизованные пользователи могут оставить комментарий.
+              <a href="/login">Войти</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+        <div class="footer-logo">Fairy Forest</div>
+        <div class="contacts">
+            <div class="email">По всем вопросам: katerina.loev@gmail.com</div>
+            <div class="creator">© WebDesign Master Catherine</div>
+        </div>
+    </div>
+    <script src="js/results.js"></script>
+  </body>
+</html>
