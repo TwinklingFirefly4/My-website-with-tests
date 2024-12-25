@@ -1,7 +1,11 @@
 // Get the data from the URL query parameter
-const params = new URLSearchParams(window.location.search);
-const dataString = params.get("data");
-const resultsData = JSON.parse(decodeURIComponent(dataString));
+// const params = new URLSearchParams(window.location.search);
+// const dataString = params.get("data");
+// const resultsData = JSON.parse(decodeURIComponent(dataString));
+// Извлекаем данные из LocalStorage
+const resultsData = JSON.parse(localStorage.getItem("testResults"));
+
+
 const score = resultsData.score;
 let resultImage = document.getElementById("result-image");
 let message;
