@@ -19,28 +19,28 @@ if (score === 0) {
   message = "Надо было постараться, чтобы не ответить ничего (⓿_⓿)";
   addMessage =
     "Одно из двух: либо ты полный 0, либо ты знал ответы на все вопросы и специально отвечал неправильно-_-";
-  resultImage.src = "my-img/fullSizeImg/dissapointmentCat.jpg";
+  resultImage.src = "my-img/small_img/dissapointmentCat.jpg";
 } else if (score <= 25) {
   message = "Очень плохо ＞﹏＜";
   addMessage =
     "Ты ничего не шаришь в IT. (А может ты специально выбирал неверные варианты?)))";
-  resultImage.src = "my-img/fullSizeImg/memeCatSleepy.webp";
+  resultImage.src = "my-img/small_img/memeCatSleepy.webp";
 } else if (score <= 50) {
   message = "Ну такое себе (。_。)";
   addMessage = "Некоторые знания есть, но все еще впереди!";
-  resultImage.src = "my-img/fullSizeImg/catWithBook.webp";
+  resultImage.src = "my-img/small_img/catWithBook.webp";
 } else if (score <= 75) {
   message = "Неплохо, но есть куда стремиться (*^▽^*)";
   addMessage = "Вероятно, ты только изучаешь эту отрасль.";
-  resultImage.src = "my-img/fullSizeImg/endorsingCat.jpg";
+  resultImage.src = "my-img/small_img/endorsingCat.jpg";
 } else if (score <= 99) {
   message = "А ты не так прост（￣︶￣）↗　";
   addMessage = "Ты отлично понимаешь базу программирования , удачи)";
-  resultImage.src = "my-img/fullSizeImg/cat-with-vuffle.jpg";
+  resultImage.src = "my-img/small_img/cat-with-vuffle.jpg";
 } else {
   message = "Профи §(*￣▽￣*)§";
   addMessage = "Вы готовы стать лучшим программистом в мире!)";
-  resultImage.src = "my-img/fullSizeImg/youarehacker.webp";
+  resultImage.src = "my-img/small_img/youarehacker.webp";
   showConfetti();
 }
 // Display the score

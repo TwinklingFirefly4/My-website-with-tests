@@ -12,7 +12,7 @@ let score = 0;
 const questions = [
   {
     question: "Что такое программирование?",
-    image: "../my-img/fullSizeImg/q1.webp",
+    image: "../my-img/small_img/q1.webp",
     options: [
       { text: "Процесс создания компьютерной программы", value: 1 },
       { text: "Процесс сборки компьютера", value: 0 },
@@ -23,7 +23,7 @@ const questions = [
   },
   {
     question: "Вам интересно решать логические задачи?",
-    image: "../my-img/fullSizeImg/logic.jpg",
+    image: "../my-img/small_img/logic.jpg",
     options: [
       { text: "Да", value: 1 },
       { text: "Нет", value: 0 },
@@ -34,7 +34,7 @@ const questions = [
   },
   {
     question: "Что больше всего подходит под определение “не гвозди”?",
-    image: "../my-img/fullSizeImg/gvozdi.jpg",
+    image: "../my-img/small_img/gvozdi.jpg",
     options: [
       { text: "Инструменты", value: 0 },
       { text: "Все, что не является гвоздем", value: 1 },
@@ -44,7 +44,7 @@ const questions = [
   },
   {
     question: "Чего больше - не птиц или не голубей?",
-    image: "../my-img/fullSizeImg/golub.jpg",
+    image: "../my-img/small_img/golub.jpg",
     options: [
       { text: "Не птиц", value: 0 },
       { text: "Не голубей", value: 1 },
@@ -55,7 +55,7 @@ const questions = [
   },
   {
     question: "Что такое конъюнкция?",
-    image: "../my-img/fullSizeImg/green-dots-in-row.jpg",
+    image: "../my-img/small_img/green-dots-in-row.jpg",
     options: [
       { text: "Функция для обработки строк", value: 0 },
       { text: "Логическое сложение", value: 0 },
@@ -66,7 +66,7 @@ const questions = [
   },
   {
     question: "Сколько памяти ОЗУ выделяется под объект, который не содержит в себе никаких данных? (GCC)",
-    image: "../my-img/fullSizeImg/top-view-circuit-board-close-up.jpg",
+    image: "../my-img/small_img/green-dots-in-row.jpg",
     options: [
       { text: "16 бит", value: 0 },
       { text: "32 бита", value: 1 },
@@ -79,7 +79,7 @@ const questions = [
   },
   {
     question: "Что такое IDE в программировании?",
-    image: "../my-img/fullSizeImg/matrix-hacker-background.jpg",
+    image: "../my-img/small_img/hacker.webp",
     options: [
       { text: "Язык программирования", value: 0 },
       { text: "Интерфейс разработки приложений", value: 0 },
@@ -90,7 +90,7 @@ const questions = [
   },
   {
     question: "Какому числу десятичной системе счисления соответствует число 100 в двоичной?",
-    image: "../my-img/fullSizeImg/one-zero.webp",
+    image: "../my-img/small_img/one-zero.webp",
     options: [
       { text: "4", value: 1 },
       { text: "0", value: 0 },
@@ -103,7 +103,7 @@ const questions = [
   },
   {
     question: "Поддерживает ли язык C# множественное наследование?",
-    image: "../my-img/fullSizeImg/heritage.png",
+    image: "../my-img/small_img/heritage.png",
     options: [
       { text: "Да", value: 0 },
       { text: "Нет", value: 1 },
@@ -115,7 +115,7 @@ const questions = [
   },
   {
     question: "Практическое применение бинарного поиска?",
-    image: "../my-img/fullSizeImg/graphs.jpg",
+    image: "../my-img/small_img/graphs.jpg",
     options: [
       { text: "Выдача кредитов и микро-займов. Расчет платежеспособности клиента.", value: 0 },
       { text: "Начисление зарплат сотрудникам исходя из их рабочего графика", value: 0 },
@@ -125,7 +125,7 @@ const questions = [
   },
   {
     question: "Дерево это?",
-    image: "../my-img/fullSizeImg/like-tree.jpg",
+    image: "../my-img/small_img/like-tree.jpg",
     options: [
       { text: "Растение", value: 0 },
       { text: "Это дерево(очевидно же -_-)", value: 0 },
@@ -138,7 +138,7 @@ const questions = [
   },
   {
     question: "Разработкой алгоритма решения задачи называется:",
-    image: "../my-img/fullSizeImg/technology-green-lines-background.jpg",
+    image: "../my-img/small_img/technology-green-lines-background.jpg",
     options: [
       { text: "точное описание данных, условий задачи и ее целого решения", value: 0 },
       { text: "сведение задачи к математической модели, для которой известен метод решения", value: 0 },
@@ -148,7 +148,7 @@ const questions = [
   },
   {
     question: "Для чего нужен оператор continue в цикле?",
-    image: "../my-img/fullSizeImg/circles-green.jpg",
+    image: "../my-img/small_img/graphs.jpg",
     options: [
       { text: "Позволяет продолжить работу после применения оператора return", value: 0 },
       { text: "Позволяет продолжить работу программы в случае возникновения ошибки или исключения", value: 0 },
@@ -158,7 +158,7 @@ const questions = [
   },
   {
     question: "Что/кто такое flush?",
-    image: "../my-img/fullSizeImg/flash.webp",
+    image: "../my-img/small_img/flash.webp",
     options: [
       { text: "Запись в файл", value: 0 },
       { text: "Чтение файла", value: 0 },
@@ -169,7 +169,7 @@ const questions = [
   },
   {
     question: "Существует ли в С++ множественное наследование?",
-    image: "../my-img/fullSizeImg/neon-cactus.jpg",
+    image: "../my-img/small_img/neon-cactus.jpg",
     options: [
       { text: "Да", value: 1 },
       { text: "Нет", value: 0 },
@@ -179,7 +179,7 @@ const questions = [
   },
   {
     question: "Что такое полиморфизм?",
-    image: "../my-img/fullSizeImg/mahito.jpg",
+    image: "../my-img/small_img/mahito.jpg",
     options: [
       { text: "Сокрытие данных от прямого воздействия из вне. Обычно реализуется с помощью модификаторов доступа. ", value: 0 },
       { text: "Возможность унаследоваться сразу от множества классов.", value: 0 },
@@ -190,7 +190,7 @@ const questions = [
   },
   {
     question: 'Что означает термин "рекурсия" в программировании?',
-    image: "../my-img/fullSizeImg/for-recursion.jpg",
+    image: "../my-img/small_img/for-recursion.jpg",
     options: [
       { text: "Ошибка в программе", value: 0 },
       { text: "Структура данных для хранения информации", value: 0 },
@@ -201,7 +201,7 @@ const questions = [
   },
   {
     question: 'Какая операция выполняется в цикле "for"?',
-    image: "../my-img/fullSizeImg/password.jpg",
+    image: "../my-img/small_img/password.jpg",
     options: [
       { text: "Условие", value: 0 },
       { text: "Присваивание", value: 0 },
@@ -245,9 +245,6 @@ function showResults() {
   let totalScore=0;
   let maxScore=0; 
   questions.forEach((question, index) => {
-    // if (userAnswers[index] === question.options[question.correctAnswer].value) {
-    //   score += question.options[question.correctAnswer].value;
-    // }
     const correctOption = question.options[question.correctAnswer];
     maxScore += correctOption.value; // Sum of all correct values
     if (userAnswers[index] === correctOption.value) {
@@ -273,8 +270,6 @@ function showResults() {
   // Redirect to results page with data
   window.location.href = `results.html?data=${resultsDataString}`;
 }
-
-// Event Listeners
 
 // Back button
 const backButton = document.querySelector(".nav-right a:nth-of-type(1)");
@@ -312,19 +307,6 @@ optionsContainer.addEventListener("change", function (event) {
     selectedOption.parentNode.classList.add("active");
     // Enable next question button
     nextQuestionButton.classList.add("next-question-active");
-    // Check if the selected option is correct and update score
-    // if (selectedOption.dataset.correct === "true") {
-    //   score++;
-    // } else {
-    //   // If previously selected option was correct, decrement score
-    //   if (
-    //     userAnswers[currentQuestionIndex] !== selectedOption.value &&
-    //     userAnswers[currentQuestionIndex] ===
-    //       questions[currentQuestionIndex].correctAnswer
-    //   ) {
-    //     score--;
-    //   }
-    // }
   }
 });
 
