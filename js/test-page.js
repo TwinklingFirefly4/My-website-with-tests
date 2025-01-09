@@ -49,7 +49,7 @@ const questions = [
   },
   {
     question: "Чего больше - не птиц или не голубей?",
-    image: "../my-img/small_img/golub.jpg",
+    image: `${basePath}/my-img/small_img/golub.jpg`,
     options: [
       { text: "Не птиц", value: 0 },
       { text: "Не голубей", value: 1 },
@@ -60,7 +60,7 @@ const questions = [
   },
   {
     question: "Что такое конъюнкция?",
-    image: "../my-img/small_img/green-dots-in-row.jpg",
+    image: `${basePath}/my-img/small_img/green-dots-in-row.jpg`,
     options: [
       { text: "Функция для обработки строк", value: 0 },
       { text: "Логическое сложение", value: 0 },
@@ -72,7 +72,7 @@ const questions = [
   {
     question:
       "Сколько памяти ОЗУ выделяется под объект, который не содержит в себе никаких данных? (GCC)",
-    image: "../my-img/small_img/green-dots-in-row.jpg",
+    image: `${basePath}/my-img/small_img/green-dots-in-row.jpg`,
     options: [
       { text: "16 бит", value: 0 },
       { text: "32 бита", value: 1 },
@@ -85,7 +85,7 @@ const questions = [
   },
   {
     question: "Что такое IDE в программировании?",
-    image: "../my-img/small_img/hacker.webp",
+    image: `${basePath}/my-img/small_img/hacker.webp`,
     options: [
       { text: "Язык программирования", value: 0 },
       { text: "Интерфейс разработки приложений", value: 0 },
@@ -97,7 +97,7 @@ const questions = [
   {
     question:
       "Какому числу десятичной системе счисления соответствует число 100 в двоичной?",
-    image: "../my-img/small_img/one-zero.webp",
+    image: `${basePath}/my-img/small_img/one-zero.webp`,
     options: [
       { text: "4", value: 1 },
       { text: "0", value: 0 },
@@ -110,7 +110,7 @@ const questions = [
   },
   {
     question: "Поддерживает ли язык C# множественное наследование?",
-    image: "../my-img/small_img/heritage.png",
+    image: `${basePath}/my-img/small_img/heritage.png`,
     options: [
       { text: "Да", value: 0 },
       { text: "Нет", value: 1 },
@@ -122,7 +122,7 @@ const questions = [
   },
   {
     question: "Практическое применение бинарного поиска?",
-    image: "../my-img/small_img/graphs.jpg",
+    image: `${basePath}/my-img/small_img/graphs.jpg`,
     options: [
       {
         text: "Выдача кредитов и микро-займов. Расчет платежеспособности клиента.",
@@ -141,7 +141,7 @@ const questions = [
   },
   {
     question: "Дерево это?",
-    image: "../my-img/small_img/like-tree.jpg",
+    image: `${basePath}/my-img/small_img/like-tree.jpg`,
     options: [
       { text: "Растение", value: 0 },
       { text: "Это дерево(очевидно же -_-)", value: 0 },
@@ -154,7 +154,7 @@ const questions = [
   },
   {
     question: "Разработкой алгоритма решения задачи называется:",
-    image: "../my-img/small_img/technology-green-lines-background.jpg",
+    image: `${basePath}/my-img/small_img/technology-green-lines-background.jpg`,
     options: [
       {
         text: "точное описание данных, условий задачи и ее целого решения",
@@ -173,7 +173,7 @@ const questions = [
   },
   {
     question: "Для чего нужен оператор continue в цикле?",
-    image: "../my-img/small_img/graphs.jpg",
+    image: `${basePath}/my-img/small_img/graphs.jpg`,
     options: [
       {
         text: "Позволяет продолжить работу после применения оператора return",
@@ -192,7 +192,7 @@ const questions = [
   },
   {
     question: "Что/кто такое flush?",
-    image: "../my-img/small_img/flash.webp",
+    image: `${basePath}/my-img/small_img/flash.webp`,
     options: [
       { text: "Запись в файл", value: 0 },
       { text: "Чтение файла", value: 0 },
@@ -203,7 +203,7 @@ const questions = [
   },
   {
     question: "Существует ли в С++ множественное наследование?",
-    image: "../my-img/small_img/neon-cactus.jpg",
+    image: `${basePath}/my-img/small_img/neon-cactus.jpg`,
     options: [
       { text: "Да", value: 1 },
       { text: "Нет", value: 0 },
@@ -213,7 +213,7 @@ const questions = [
   },
   {
     question: "Что такое полиморфизм?",
-    image: "../my-img/small_img/mahito.jpg",
+    image: `${basePath}/my-img/small_img/mahito.jpg`,
     options: [
       {
         text: "Сокрытие данных от прямого воздействия из вне. Обычно реализуется с помощью модификаторов доступа. ",
@@ -233,7 +233,7 @@ const questions = [
   },
   {
     question: 'Что означает термин "рекурсия" в программировании?',
-    image: "../my-img/small_img/for-recursion.jpg",
+    image: `${basePath}/my-img/small_img/for-recursion.jpg`,
     options: [
       { text: "Ошибка в программе", value: 0 },
       { text: "Структура данных для хранения информации", value: 0 },
@@ -244,7 +244,7 @@ const questions = [
   },
   {
     question: 'Какая операция выполняется в цикле "for"?',
-    image: "../my-img/small_img/password.jpg",
+    image: `${basePath}/my-img/small_img/password.jpg`,
     options: [
       { text: "Условие", value: 0 },
       { text: "Присваивание", value: 0 },
