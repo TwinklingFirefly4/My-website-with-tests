@@ -8,11 +8,14 @@ let userAnswers = [];
 let score = 0;
 
 // Questions Array
+// Определяем базовый путь
+const isGitHubPages = window.location.hostname === 'twinklingfirefly4.github.io';
+const basePath = isGitHubPages ? '/My-website-with-tests' : '';
 //ПОМЕНЯТЬ КАРТИНКИ
 const questions = [
   {
     question: "Что такое программирование?",
-    image: "../my-img/small_img/q1.webp",
+    image: `${basePath}/my-img/small_img/q1.webp`,
     options: [
       { text: "Процесс создания компьютерной программы", value: 1 },
       { text: "Процесс сборки компьютера", value: 0 },
@@ -23,7 +26,8 @@ const questions = [
   },
   {
     question: "Вам интересно решать логические задачи?",
-    image: "../my-img/small_img/logic.jpg",
+    // image: "../my-img/small_img/logic.jpg",
+    image: `${basePath}/my-img/small_img/logic.jpg`,
     options: [
       { text: "Да", value: 1 },
       { text: "Нет", value: 0 },
