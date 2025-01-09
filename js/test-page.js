@@ -34,7 +34,7 @@ const questions = [
   },
   {
     question: "Что больше всего подходит под определение “не гвозди”?",
-    image: "../my-img/small_img/gvozdi.jpg",
+    image: `${basePath}/my-img/small_img/gvozdi.jpg`,
     options: [
       { text: "Инструменты", value: 0 },
       { text: "Все, что не является гвоздем", value: 1 },
