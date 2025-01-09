@@ -9,6 +9,7 @@ let score = 0;
 
 // Questions Array
 // Определяем базовый путь
+//ЗАЕБЕТ МЕНЯ ЭТОТ ГИТ ХАБ!!!!
 const isGitHubPages = window.location.hostname === 'twinklingfirefly4.github.io';
 const basePath = isGitHubPages ? '/My-website-with-tests' : '';
 //ПОМЕНЯТЬ КАРТИНКИ
