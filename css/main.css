@@ -4,15 +4,18 @@
   box-sizing: border-box;
 }
 :root {
-  /*здесь определяются переменные*/
+  /*переменная включает отношение ширины к высоте. используется для расчета размера элемента в зависимости от азмера экрана*/
   --index: calc(
     1vw + 1vh
-  ); /*переменная включает отношение ширины к высоте. используется для расчета размера элемента в зависимости от размера экрана*/
-  --transition: transform .75s cubic-bezier(.075,0.5, 0, 1); /*характеристики анимации. cubic-bezier характеризует скорость анимации(начинается резко и плавно заканчивается)*/
+  );
+  /*характеристики анимации. cubic-bezier характеризует скорость анимации(начинается резко и плавно заканчивается)*/
+  --transition: transform .75s cubic-bezier(.075,0.5, 0, 1); 
+  --main-text-color: #ebfff7;
+  --main-yellow: #ffe047;
 }
 @font-face {
-  /*подключаем шрифты*/
-  font-family: raleway_f; /*суффикс _f указывается (любой), для того, чтобы шрифты не подгружались из системы, а брались ислючительно из нашей папки*/
+  /*суффикс _f указывается (любой), для того, чтобы шрифты не подгружались из системы, а брались ислючительно из нашей папки*/
+  font-family: raleway_f; 
   src: url(../fonts/raleway-regular.woff2);
 }
 @font-face {
@@ -22,7 +25,7 @@
 }
 body {
   background-color: #01110a;
-  color: #ebfff7;
+  color: var(--main-text-color);
   font-family: raleway_f, sans-serif;
   line-height: 1.55;
 }
@@ -54,9 +57,11 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
-  background-size: cover; /*изображение покрывает весь блок*/
+  /*изображение покрывает весь блок*/
+  background-size: cover; 
   background-position: center;
-  will-change: transform; /*говорит о том, что данным тегам нужно уделить больше аппаратного времени, чтобы не было фризов, задержек и тд*/
+  /*говорит о том, что данным тегам нужно уделить больше аппаратного времени, чтобы не было фризов, задержек и тд*/
+  will-change: transform; 
   z-index: 2;
   transition: var(--transition);
 }
@@ -76,7 +81,7 @@ body {
   will-change: transform;
   text-transform: uppercase;
   font-weight: 900;
-  text-shadow: 0 0 15px #ffe047;
+  text-shadow: 0 0 15px var(--main-text-color);
   transition: var(--transition);
 }
 .layers__title {
@@ -89,9 +94,8 @@ body {
   margin-top: calc(var(--index) * -1.75);
 }
 .main-article {
-  --main-article-transform: translate3d(0, calc(var(--scrollTop) / -7.5), 0);
   min-height: 100vh;
-  /* overflow: hidden; */
+  width: 100%;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -106,6 +110,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 80%;
 }
 .main-article__header {
   text-transform: uppercase;
@@ -133,67 +138,26 @@ body {
   font-size: calc(var(--index) * 0.75);
   letter-spacing: calc(var(--index) / 37.5);
 }
-.start{
-  font-size: 1rem;
-  padding: 10px 45px;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 10px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  background-color: transparent;
-  border-color: #fffdc0;
-  color:#fffdc0;
-}
-.start:hover{
-  transform: scale(1.1); 
-  background-color: #fffdc0;
-  border-color: transparent;
-  color: rgba(0,0,0,0);
-}
 
-/* кнопка начать */
-::selection {
-  background: #003e1f;
-}
-.svg-wrapper {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 auto;
-  width: 500px;  
-}
-.shape1,
-.shape2 {
-  stroke-dasharray: 1120;
-  stroke-width: 5px;
-  fill: transparent;
-  stroke: #003e1fa8;
-  border-bottom: 5px solid black;
-  transition-timing-function: linear;
-  transition: stroke-dashoffset 4s, stroke-dasharray 4s;
-}
-.shape1 {
-  stroke-dashoffset: 1120;
-}
-.shape2 {
-  stroke-dashoffset: -1120;
-}
-.text {
-  font-size: 1.2rem;
-  color: #fff;
-  top: -55px;
-  position: relative;
-}
-.text a{
+.main-article__content > a{
+  margin-top: calc(var(--index) * 0.75);
   text-decoration: none;
-  color:#fff;
+  font-size: calc(var(--index) * 1.1);
+  color: inherit;
+  transition: filter 0.3s ease; /* Плавный переход */
 }
-.svg-wrapper:hover .shape1,
-.svg-wrapper:hover .shape2 {
-  stroke-dashoffset: 0;
-  stroke-dasharray: 1120;
+.main-article__content > a:hover{
+  filter: brightness(90%);
+}
+.main-article__content > a::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: var(--main-text-color);
+  display: block;
+  margin: auto;
+  transition: width 1s ease;
+}
+.main-article__content > a:hover::after {
+  width: 100%;
 }
