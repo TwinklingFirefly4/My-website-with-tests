@@ -3,9 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+:root {
+  --main-text-color: #faffe5;
+  --main-yellow: #ffe047fb;
+}
 /* Стили навигации */
 .nav {
+  color: var(--main-text-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,19 +37,28 @@
   display: flex;
   align-items: center;
   list-style: none;
+  column-gap: 20px;
 }
-.nav-list li {
-  margin-left: 1rem;
-}
-.nav-list a {
+/* .nav-list li svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--main-text-color); 
+  transition: fill 0.3s ease;
+} */
+.nav a {
   text-decoration: none;
   color: #fff;
+}
+.nav-list li {
+  display: flex;
+  align-items: center; 
+  gap: 8px; 
 }
 .nav-list a::after {
   content: "";
   width: 0%;
   height: 2px;
-  background: #ffe047;
+  background: var(--main-yellow);
   display: block;
   margin: auto;
   transition: width 1s ease;
