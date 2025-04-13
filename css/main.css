@@ -10,8 +10,8 @@
   );
   /*характеристики анимации. cubic-bezier характеризует скорость анимации(начинается резко и плавно заканчивается)*/
   --transition: transform .75s cubic-bezier(.075,0.5, 0, 1); 
-  --main-text-color: #ebfff7;
-  --main-yellow: #ffe047;
+  --main-text-color: #f6ffce;
+  --main-yellow: #ffe044;
 }
 @font-face {
   /*суффикс _f указывается (любой), для того, чтобы шрифты не подгружались из системы, а брались ислючительно из нашей папки*/
@@ -147,13 +147,13 @@ body {
   transition: filter 0.3s ease; /* Плавный переход */
 }
 .main-article__content > a:hover{
-  filter: brightness(90%);
+  /* filter: brightness(90%); */
 }
 .main-article__content > a::after {
   content: "";
   width: 0%;
   height: 2px;
-  background: var(--main-text-color);
+  background: var(--main-yellow);
   display: block;
   margin: auto;
   transition: width 1s ease;
