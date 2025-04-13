@@ -9,46 +9,73 @@
   font-weight: 900;
 }
 
+:root {
+  /* Основные переменные */
+  --index: calc(1vw + 1vh);
+  --transition: transform 0.75s cubic-bezier(0.075, 0.5, 0, 1);
+
+  /* Цветовая схема (светлая тема) */
+  --bg-body: url(../my-img/fullSizeImg/yellow-flowers-blur.jpg);
+  --bg-content: #bdbb85de;
+  --content-shadow: 0 0 15px rgba(255, 224, 71, 0.9);
+  --bg-container: #fffee3;
+  --primary-color: #003e1f;
+  --primary-hover: #01110a;
+  --text-color: #333;
+  --text-light: #fffee3;
+  --input-bg: #003e1f20;
+  --social-icon-bg: #fffee3;
+  --social-icon-shadow: 0px 0px 3px #003e1f;
+  --social-icon-hover-shadow: 2px 2px 2px #003e1f, -2px -2px 2px #fff;
+  --toggle-bg: linear-gradient(to right, #008f47, #003e1f);
+}
+/* Тёмная тема (пример) */
+.dark-theme {
+  --bg-body: url(../my-img/fullSizeImg/dark-flowers-blur.jpg);
+  --bg-content: #2a2a2ade;
+  --content-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  --bg-container: #1e1e1e;
+  --primary-color: #4caf50;
+  --primary-hover: #45a049;
+  --text-color: #f0f0f0;
+  --text-light: #e0e0e0;
+  --input-bg: #4caf5020;
+  --social-icon-bg: #333;
+  --social-icon-shadow: 0px 0px 3px #4caf50;
+  --social-icon-hover-shadow: 2px 2px 2px #4caf50, -2px -2px 2px #555;
+  --toggle-bg: linear-gradient(to right, #2e7d32, #1b5e20);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: raleway_f, sans-serif;
 }
-:root {
-  /*здесь определяются переменные*/
-  --index: calc(
-    1vw + 1vh
-  ); /*переменная включает отношение ширины к высоте. используется для расчета размера элемента в зависимости от размера экрана*/
-  --transition: transform .75s cubic-bezier(.075,0.5, 0, 1); /*характеристики анимации. cubic-bezier характеризует скорость анимации(начинается резко и плавно заканчивается)*/
-}
 
 body {
-  font-family: raleway_f, sans-serif;
-  margin: 0;
-  background-color: #f2f2f2;
+  background: var(--bg-body);
   min-height: 100vh;
-  background: url(../my-img/small_img/green-field-with-butterflyes.jpeg);
+  background: url(../my-img/fullSizeImg/yellow-flowers-blur.jpg);
   background-size: cover;
   background-position: center;
-
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.content{
-  width:100%;
+.content {
+  width: 100%;
   margin: 50px auto;
   padding: 20px;
-  background-color: #bdbb85de;
-  box-shadow: 0 0 15px rgba(255, 224, 71, 0.9);
-  display:flex;
+  background-color: var(--bg-content);
+  box-shadow: var(--content-shadow);
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 .container {
-  background-color: #fffee3;
+  background-color: var(--bg-container);
   border-radius: 30px;
   position: relative;
   overflow: hidden;
@@ -56,9 +83,10 @@ body {
   max-width: 768px;
   min-height: 480px;
 }
-.container .h1{
+.container .h1 {
   font-size: 26px;
   font-weight: bold;
+  color: var(--text-color);
 }
 
 .container p {
@@ -66,22 +94,24 @@ body {
   line-height: 20px;
   letter-spacing: 0.2px;
   margin: 20px 0;
+  color: var(--text-color);
 }
 
 .container span {
   font-size: 12px;
+  color: var(--text-color);
 }
 
 .container a {
-  color: #003E1F;
+  color: var(--primary-color);
   font-size: 13px;
   text-decoration: none;
   margin: 15px 0 10px;
 }
 
 .container button {
-  background-color: #003E1F;
-  color:#fffee3;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   font-size: 12px;
   padding: 10px 45px;
   border: 1px solid transparent;
@@ -95,17 +125,17 @@ body {
 }
 
 .container button:hover {
-  background-color: #01110A;
+  background-color: var(--primary-hover);
   transform: scale(1.1);
 }
 
 .container button.hidden {
   background-color: transparent;
-  border-color: #fffee3
+  border-color: var(--text-light);
 }
 
 .container form {
-  background-color: #fffee3;
+  background-color: var(--bg-container);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +145,7 @@ body {
 }
 
 .container input {
-  background-color: #003e1f20;
+  background-color: var(--input-bg);
   border: none;
   margin: 8px 0;
   padding: 10px 15px;
@@ -123,12 +153,14 @@ body {
   border-radius: 8px;
   width: 100%;
   outline: none;
+  color: var(--text-color);
 }
 
 .form-container {
   position: absolute;
   top: 0;
   height: 100%;
+  width: 50%;
   transition: all 0.6s ease-in-out;
 }
 
@@ -157,11 +189,13 @@ body {
 }
 
 @keyframes move {
-  0%, 49.99% {
+  0%,
+  49.99% {
     opacity: 0;
     z-index: 1;
   }
-  50%, 100% {
+  50%,
+  100% {
     opacity: 1;
     z-index: 5;
   }
@@ -172,10 +206,10 @@ body {
 }
 
 .social-icons a {
-  border: 1px solid #fffee3;
-  color:black;
+  border: 1px solid var(--social-icon-bg);
+  color: var(--text-color);
   font-size: 1rem;
-  box-shadow: 0px 0px 3px #003E1F;
+  box-shadow: var(--social-icon-shadow);
   border-radius: 20%;
   display: inline-flex;
   justify-content: center;
@@ -188,7 +222,7 @@ body {
 
 .social-icons a:hover {
   transform: scale(1.1);
-  box-shadow: 2px 2px 2px #003E1F, -2px -2px 2px #fff;
+  box-shadow: var(--social-icon-hover-shadow);
 }
 
 .toggle-container {
@@ -210,9 +244,7 @@ body {
 
 .toggle {
   height: 100%;
-  background-color: #003E1F;
-  background: linear-gradient(to right, #008F47, #003E1F);
-  color: #fffee3;
+  background: var(--toggle-bg);
   position: relative;
   left: -100%;
   height: 100%;
@@ -226,6 +258,7 @@ body {
 }
 
 .toggle-panel {
+  color: var(--text-light);
   position: absolute;
   width: 50%;
   height: 100%;
@@ -238,6 +271,11 @@ body {
   top: 0;
   transform: translateX(0);
   transition: all 0.6s ease-in-out;
+}
+.toggle-panel .h1,
+.toggle-panel p,
+.toggle-panel button {
+  color: inherit;
 }
 
 .toggle-left {
@@ -255,4 +293,94 @@ body {
 
 .container.active .toggle-right {
   transform: translateX(200%);
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    max-width: 480px;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  /* Полный сброс стилей для форм */
+  .form-container {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    transform: none !important;
+    padding: 30px 25px;
+    opacity: 1 !important;
+    z-index: auto !important;
+  }
+
+  /* Форма регистрации - изначально скрыта */
+  .sign-up {
+    display: none;
+  }
+
+  /* В активном состоянии показываем регистрацию, скрываем вход */
+  .container.active .sign-up {
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+  }
+  .container.active .sign-in {
+    display: none;
+  }
+
+  /* Переключатель - полный сброс стилей */
+  .toggle-container {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+    border-radius: 0 !important;
+    order: 3;
+    overflow: hidden;
+  }
+
+  .toggle {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 140px;
+    transform: none !important;
+    display: flex;
+    background: var(--toggle-bg);
+    border-radius: 0 !important;
+  }
+
+  /* Панели переключателя */
+  .toggle-panel {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    transform: none !important;
+    display: none;
+    border-radius: 0 !important;
+  }
+
+  /* Показываем нужную панель */
+  .container:not(.active) .toggle-right {
+    display: flex;
+  }
+  .container.active .toggle-left {
+    display: flex;
+  }
+
+  /* Убираем все возможные остаточные трансформации */
+  .toggle-left,
+  .toggle-right {
+    transform: none !important;
+  }
 }
