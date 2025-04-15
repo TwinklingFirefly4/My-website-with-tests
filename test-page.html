@@ -3,20 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="my-img/icons/icons8-firefly-58.png">
+    <link rel="icon" href="my-img/icons/icons8-firefly-58.png" />
     <link rel="stylesheet" href="css/test-page.css" />
     <script src="js/test-page.js" defer></script>
     <title>Your programming skills</title>
-    <base href="https://twinklingfirefly4.github.io/My-website-with-tests/">
+    <!-- <base href="https://twinklingfirefly4.github.io/My-website-with-tests/"> -->
   </head>
   <body>
     <nav class="main-nav">
       <div class="nav-left">
-        <span class="test-name">Name of test</span>
+        <!-- <span class="test-name">Name of test</span> -->
         <div class="progress">
           Вопрос: <span class="questionNumber">0</span>/<span
             class="numberOfQuestion"
-            >15</span>
+            >15</span
+          >
         </div>
       </div>
       <div class="nav-right">
@@ -27,12 +28,18 @@
         <img src="my-img/icons/language.svg" class="icon" />
         <a href="#">Сменить язык</a>
         <img src="my-img/icons/home.svg" class="icon" />
-        <a href="#">Выход</a>
+        <a href="index.html">Выход</a>
       </div>
+      <button class="nav-toggle" aria-label="Открыть меню">☰</button>
     </nav>
+    <div class="background"></div>
     <div class="content">
       <p class="question">Question 1</p>
       <div class="container">
+        <!-- Кнопка "Назад" для ПК версии -->
+        <div class="previous-question pc-version">
+          <div><</div>
+        </div>
         <div class="image">
           <img
             src="my-img/fullSizeImg/bamboo-forest-with-fireflies.webp"
@@ -57,8 +64,18 @@
             <span>Option4</span>
           </label>
         </div>
-        <div class="next-question">
-          <img src="my-img/icons/forward.svg" alt="" /><a href="#"></a>
+        <!-- Кнопки для мобильной версии -->
+        <div class="mobile-buttons">
+          <div class="previous-question mobile-version">
+            <div><</div>
+          </div>
+          <div class="next-question mobile-version">
+            <div>></div>
+          </div>
+        </div>
+
+        <div class="next-question pc-version">
+          <div>></div>
         </div>
       </div>
     </div>
