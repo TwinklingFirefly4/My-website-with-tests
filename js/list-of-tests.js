@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", async function () {
  */
 async function loadAvailableTests() {
   try {
-    const response = await fetch("../tests/tests-manifest.json");
+    // const response = await fetch("../tests/tests-manifest.json");
+    const response = await fetch(
+      `${window.location.origin}/My-website-with-tests/tests/tests-manifest.json`
+    );
     if (!response.ok) throw new Error("Не удалось загрузить манифест тестов");
     return await response.json();
   } catch (error) {
