@@ -49,7 +49,7 @@ function createTestCard(test) {
   card.dataset.testId = test.id;
 
   card.innerHTML = `
-      <img src="${test.previewImage || "my-img/small_img/graphs.jpg"}" 
+      <img src="${test.previewImage || "./my-img/small_img/graphs.jpg"}" 
            alt="${test.name}" 
            class="test-image">
       <div class="test-content">
@@ -73,7 +73,7 @@ function setupTestCards() {
       const testId = this.dataset.testId;
 
       // Формируем URL с учетом basePath
-      const testUrl = new URL(`test-page.html`, window.location.href);
+      const testUrl = new URL(`./test-page.html`, window.location.href);
       testUrl.searchParams.set("test", testId);
 
       window.location.href = testUrl.toString();

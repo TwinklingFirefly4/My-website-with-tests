@@ -254,7 +254,7 @@ function showResults() {
 
   saveResults(percentageScore, results);
   updateTestStats(AppState.currentTestId, percentageScore);
-  window.location.href = "results.html";
+  window.location.href = "./results.html";
 }
 
 /**
