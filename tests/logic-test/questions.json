@@ -1,0 +1,48 @@
+{
+  "testName": "Тест на логику",
+  "questions": [
+    {
+      "question": "Что означает термин 'рекурсия' в программировании?",
+      "image": "my-img/small_img/for-recursion.jpg",
+      "options": [
+        { "text": "Ошибка в программе", "value": 0 },
+        { "text": "Структура данных для хранения информации", "value": 0 },
+        { "text": "Программа, выполняющая одно действие", "value": 0 },
+        { "text": "Процесс вызова функции из самой себя", "value": 1 }
+      ],
+      "correctAnswer": 3
+    },
+    {
+      "question": "Какая операция выполняется в цикле 'for'?",
+      "image": "my-img/small_img/password.jpg",
+      "options": [
+        { "text": "Условие", "value": 0 },
+        { "text": "Присваивание", "value": 0 },
+        { "text": "Вывод", "value": 0 },
+        { "text": "Итерация", "value": 1 }
+      ],
+      "correctAnswer": 3
+    },
+    {
+        "question": "Вам интересно решать логические задачи?",
+        "image": "my-img/small_img/logic.jpg",
+        "options": [
+          { "text": "Да", "value": 1 },
+          { "text": "Нет", "value": 0 },
+          { "text": "Затрудняюсь ответить", "value": 0.2 },
+          { "text": "В детстве бывало решал(а)", "value": 0.3 }
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "question": "Что больше всего подходит под определение 'не гвозди'?",
+        "image": "my-img/small_img/gvozdi.jpg",
+        "options": [
+          { "text": "Инструменты", "value": 0 },
+          { "text": "Все, что не является гвоздем", "value": 1 },
+          { "text": "Молоток", "value": 0 }
+        ],
+        "correctAnswer": 1
+      }
+  ]
+}

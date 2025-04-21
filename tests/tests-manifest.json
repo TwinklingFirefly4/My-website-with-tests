@@ -1,0 +1,26 @@
+[
+    {
+      "id": "programming-basic",
+      "name": "Основы программирования",
+      "description": "Тест для начинающих разработчиков",
+      "previewImage": "my-img/small_img/for-recursion.jpg",
+      "questionsCount": 15,
+      "difficulty": "Средний уровень"
+    },
+    {
+      "id": "logic-test",
+      "name": "Логические задачи",
+      "description": "Проверьте свои логические способности",
+      "previewImage": "my-img/small_img/for-recursion.jpg",
+      "questionsCount": 10,
+      "difficulty": "Сложный уровень"
+    },
+    {
+      "id": "math-test",
+      "name": "Математика для программистов",
+      "description": "Основы математики, необходимые в программировании",
+      "previewImage": "my-img/small_img/for-recursion.jpg",
+      "questionsCount": 12,
+      "difficulty": "Средний уровень"
+    }
+  ]

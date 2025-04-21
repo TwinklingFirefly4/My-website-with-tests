@@ -10,6 +10,7 @@ const AppConfig = {
   basePath:
     window.location.hostname === "twinklingfirefly4.github.io" ? "/" : "./",
   localStorageKey: "testResults",
+  defaultTestFile: "questions.json",
 };
 
 // ==============================================
@@ -17,12 +18,12 @@ const AppConfig = {
 // ==============================================
 
 const AppState = {
+  currentTestId: getTestIdFromURL(), // Получаем ID из URL
   currentQuestionIndex: 0,
   userAnswers: [],
   score: 0,
   questions: [],
   testName: "",
-  currentTestId: "programming-basic",
 };
 
 // Инициализируем массив ответов
@@ -55,6 +56,20 @@ const DomElements = {
 // ==============================================
 // 4. ОСНОВНЫЕ ФУНКЦИИ ТЕСТА
 // ==============================================
+
+/**
+ * Получает id теста
+ */
+function getTestIdFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const testId = params.get("test");
+
+  if (!testId) {
+    console.error("Test ID not specified in URL");
+    return "programming-basic"; // значение по умолчанию
+  }
+  return testId;
+}
 
 /**
  * Обновляет интерфейс текущего вопроса
@@ -114,12 +129,12 @@ async function loadTest(testId) {
     const testData = await response.json();
     AppState.questions = testData.questions;
     AppState.testName = testData.testName;
-    console.log(testData);
     AppState.userAnswers = Array(AppState.questions.length).fill("");
 
     return true;
   } catch (error) {
     console.error("Ошибка загрузки теста:", error);
+    showError("Не удалось загрузить вопросы теста");
     return false;
   }
 }
@@ -199,6 +214,38 @@ function toggleNavigationButtons(isReset = false) {
 // ==============================================
 
 /**
+ * Обновляет статистику
+ */
+function updateTestStats(testId, userScore) {
+  const key = `test-stats-${testId}`;
+  const stats = JSON.parse(localStorage.getItem(key)) || {
+    totalAttempts: 0,
+    scoreRanges: {
+      '0-25': 0,
+      '26-50': 0,
+      '51-75': 0,
+      '76-99': 0,
+      '100': 0
+    },
+    averageScore: 0
+  };
+
+  // Обновляем данные
+  stats.totalAttempts++;
+  stats.averageScore = (stats.averageScore * (stats.totalAttempts - 1) + userScore) / stats.totalAttempts;
+  
+  const range = 
+    userScore === 100 ? '100' :
+    userScore <= 25 ? '0-25' :
+    userScore <= 50 ? '26-50' :
+    userScore <= 75 ? '51-75' : '76-99';
+  stats.scoreRanges[range]++;
+  
+  // Сохраняем обновленную статистику
+  localStorage.setItem(key, JSON.stringify(stats));
+}
+
+/**
  * Вычисляет и отображает результаты теста
  */
 function showResults() {
@@ -206,6 +253,7 @@ function showResults() {
   const percentageScore = (totalScore / maxScore) * 100;
 
   saveResults(percentageScore, results);
+  updateTestStats(AppState.currentTestId, percentageScore);
   window.location.href = "results.html";
 }
 
@@ -248,6 +296,7 @@ function saveResults(percentageScore, results) {
   const resultsData = {
     score: percentageScore.toFixed(2),
     questions: results,
+    testId: AppState.currentTestId
   };
 
   localStorage.setItem(AppConfig.localStorageKey, JSON.stringify(resultsData));
@@ -356,6 +405,11 @@ function updateOptionStyles(selectedInput) {
  * Инициализирует приложение
  */
 async function initApp() {
+  // Проверяем наличие testId
+  if (!AppState.currentTestId) {
+    showError("Тест не выбран");
+    return;
+  }
   // Загружаем тест перед инициализацией
   const loaded = await loadTest(AppState.currentTestId);
   if (!loaded) {

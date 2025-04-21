@@ -1,0 +1,230 @@
+@font-face {
+  /*подключаем шрифты*/
+  font-family: raleway_f;
+  src: url(../fonts/raleway-regular.woff2);
+}
+@font-face {
+  font-family: raleway_f;
+  src: url(../fonts/raleway-black.woff2);
+  font-weight: 900;
+}
+
+:root {
+  /* Основные переменные */
+  --index: calc(1vw + 1vh);
+  --gap-size: calc(var(--index) * 0.2);
+
+  /* Размеры шрифтов */
+  --header-size: calc(var(--index) * 1.3);
+  --question-font-size: calc(var(--index) * 0.9);
+  --nav-items-font-size: calc(var(--index) * 0.9);
+  --next-btn-font-size: calc(var(--index) * 2.2);
+  --test-card-title: calc(var(--index) * 0.8);
+
+  /* Цветовая схема */
+  --color-white: #ffffff;
+  --color-main-text: #ebfff7;
+  --color-yellow: #ffe047;
+  --color-dark-green: #003e1f;
+  --color-dark-green-50: #003e1f80; /* 50% прозрачности */
+  --color-dark-green-70: #003e1fb3; /* ~70% прозрачности */
+  --color-dark-green-70-alt: #003e1fb4; /* альтернативный вариант 70% */
+  --color-black-50: #00000080; /* 50% прозрачности */
+  --color-shadow: #0000001a; /* 10% прозрачности */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: raleway_f, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.background {
+  background: url("../my-img/fullSizeImg/ethereal-natural-environment\ \(2\).jpg")
+    center/cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
+
+/* Основной контент */
+main {
+  width: 100%;
+  max-width: 85%;
+  padding: 20px 0;
+  flex: 2;
+  margin: auto;
+  margin-top: calc(var(--index) * 3);
+}
+
+.page-title {
+  font-size: var(--header-size);
+  background-color: var(--color-dark-green-50);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--gap-size);
+  margin-bottom: 20px;
+}
+
+.test-card {
+  background-color: var(--color-dark-green-70);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.test-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.test-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.test-content {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.test-title {
+  font-size: var(--test-card-title);
+  margin-bottom: 10px;
+  color: var(--color-yellow);
+}
+
+.test-description {
+  font-size: calc(var(--index) * 0.6);
+  margin-bottom: 15px;
+  flex: 1;
+}
+
+.test-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: calc(var(--index) * 0.5);
+  color: var(--color-yellow);
+}
+
+/* Стили для сообщения об ошибке */
+/* .error-message {
+  padding: 1rem;
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 4px;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.test-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.test-card:hover {
+  transform: translateY(-5px);
+}
+
+.test-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.test-content {
+  padding: 15px;
+}
+
+.test-title {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.test-description {
+  margin: 0 0 10px;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.test-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #777;
+} */
+
+/* Анимация загрузки */
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .tests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title {
+    font-size: calc(var(--index) * 1.5);
+  }
+}

@@ -3,20 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="my-img/icons/icons8-firefly-58.png">
+    <link rel="icon" href="my-img/icons/icons8-firefly-58.png" />
     <link rel="stylesheet" href="css/results.css" />
-    <link rel="stylesheet" href="css/navigation.css" />
+    <link rel="stylesheet" href="css/nav.css" />
     <!-- for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     />
-    <title>Your results</title>
-    <script src="js/navigation.js"></script>
+    <script src="js/nav.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <title>Your results</title>
     <!-- <script src="js/results.js" defer></script> -->
   </head>
   <body>
+    <div class="background"></div>
     <div id="navigation-placeholder"></div>
     <div class="main-container">
       <div class="content">
@@ -35,22 +36,28 @@
               </p>
             </div>
             <div class="additionaly">
-              <button class="to-test">
+              <button class="btn to-test" id="returnToTestBtn">
                 <img src="my-img/icons/quiz.svg" alt="" />
-                <a href="test-page.html">К тесту</a>
+                <!-- <a href="test-page.html">К тесту</a> -->
+                <span>К тесту</span>
               </button>
-              <button class="statistics">
+              <button class="btn statistics">
                 <img src="my-img/icons/statistic.svg" alt="" />
                 <a href="#">Статистика</a>
               </button>
             </div>
             <div class="result-label">Результат</div>
             <div class="result">
-              <img src="my-img/small_img/three-moons-and-stars.jpg" id="result-image" alt="" />
+              <div class="img-container">
+                <img
+                  src="my-img/small_img/three-moons-and-stars.jpg"
+                  id="result-image"
+                  alt=""
+                />
+              </div>
               <div class="answer-details">
                 <p class="main-result" id="main-result"></p>
                 <p class="result-comments" id="result-comments"></p>
-                </p>
               </div>
             </div>
             <div class="answers-label">Вопросы и ответы</div>
@@ -105,15 +112,20 @@
                   <span class="comment-author">Автор 1</span>
                   <span class="comment-time">10 минут назад</span>
                 </div>
-                <div class="comment-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi hic explicabo odio omnis laborum! Magnam dicta laudantium eligendi soluta, natus itaque ratione ullam ex ipsam totam necessitatibus beatae ab in.</div>
+                <div class="comment-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
+                  hic explicabo odio omnis laborum! Magnam dicta laudantium
+                  eligendi soluta, natus itaque ratione ullam ex ipsam totam
+                  necessitatibus beatae ab in.
+                </div>
                 <div class="comment-actions">
-                    <div class="like">
-                        <img src="my-img/icons/like.svg" />
-                        4
-                      </div>
-                      <div class="like">
-                        <img src="my-img/icons/dislike.svg" />0
-                      </div>
+                  <div class="like">
+                    <img src="my-img/icons/like.svg" />
+                    4
+                  </div>
+                  <div class="like">
+                    <img src="my-img/icons/dislike.svg" />0
+                  </div>
                 </div>
               </div>
               <div class="comment">
@@ -123,13 +135,13 @@
                 </div>
                 <div class="comment-text">Можно было и лучше</div>
                 <div class="comment-actions">
-                    <div class="like">
-                        <img src="my-img/icons/like.svg" />
-                        4
-                      </div>
-                      <div class="like">
-                        <img src="my-img/icons/dislike.svg" />0
-                      </div>
+                  <div class="like">
+                    <img src="my-img/icons/like.svg" />
+                    4
+                  </div>
+                  <div class="like">
+                    <img src="my-img/icons/dislike.svg" />0
+                  </div>
                 </div>
               </div>
               <div class="comment">
@@ -155,13 +167,13 @@
                 </div>
                 <div class="comment-text">Разрабу респект</div>
                 <div class="comment-actions">
-                    <div class="like">
-                        <img src="my-img/icons/like.svg" />
-                        4
-                      </div>
-                      <div class="like">
-                        <img src="my-img/icons/dislike.svg" />0
-                      </div>
+                  <div class="like">
+                    <img src="my-img/icons/like.svg" />
+                    4
+                  </div>
+                  <div class="like">
+                    <img src="my-img/icons/dislike.svg" />0
+                  </div>
                 </div>
               </div>
             </div>
@@ -174,11 +186,11 @@
       </div>
     </div>
     <div class="footer">
-        <div class="footer-logo">Fairy Forest</div>
-        <div class="contacts">
-            <div class="email">По всем вопросам: katerina.loev@gmail.com</div>
-            <div class="creator">© WebDesign Master Catherine</div>
-        </div>
+      <div class="footer-logo">Fairy Forest</div>
+      <div class="contacts">
+        <div class="email">По всем вопросам: katerina.loev@gmail.com</div>
+        <div class="creator">© WebDesign Master Catherine</div>
+      </div>
     </div>
     <script src="js/results.js"></script>
   </body>

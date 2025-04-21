@@ -323,13 +323,14 @@ body {
   /* Форма регистрации - изначально скрыта */
   .sign-up {
     display: none;
+    width: 100% !important;
+    transform: none !important; 
   }
 
-  /* В активном состоянии показываем регистрацию, скрываем вход */
-  .container.active .sign-up {
+   /* В активном состоянии показываем регистрацию, скрываем вход */
+   .container.active .sign-up {
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
+    width: 100% !important;
   }
   .container.active .sign-in {
     display: none;

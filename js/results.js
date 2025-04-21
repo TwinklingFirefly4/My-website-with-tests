@@ -2,9 +2,26 @@
 // const params = new URLSearchParams(window.location.search);
 // const dataString = params.get("data");
 // const resultsData = JSON.parse(decodeURIComponent(dataString));
-// Извлекаем данные из LocalStorage
+// =============================================================================
+// 1. ИНИЦИАЛИЗАЦИЯ ДАННЫХ РЕЗУЛЬТАТОВ
+// =============================================================================
+/**
+ * Получает данные результатов теста из LocalStorage
+ */
 const resultsData = JSON.parse(localStorage.getItem("testResults"));
 
+// Настройка кнопки "К тесту"
+document.getElementById('returnToTestBtn').addEventListener('click', function() {
+  if (!resultsData || !resultsData.testId) {
+    alert('Не удалось определить тест');
+    return;
+  }
+  
+  // Формируем URL с учетом окружения (GitHub Pages или локальный сервер)
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  const basePath = isGitHubPages ? '/My-website-with-tests/' : './';
+  window.location.href = `${basePath}test-page.html?test=${resultsData.testId}`;
+});
 
 const score = resultsData.score;
 let resultImage = document.getElementById("result-image");
@@ -109,3 +126,46 @@ resultsData.questions.forEach((question, index) => {
 
   resultsContainer.appendChild(answerDiv);
 });
+
+/**
+ * Загружает статистику
+ */
+async function showStatisticsModal() {
+  const modal = document.getElementById('statsModal');
+  const statsContent = document.getElementById('statsContent');
+  
+  try {
+    const stats = JSON.parse(localStorage.getItem(`test-stats-${resultsData.testId}`)) || {
+      totalAttempts: 0,
+      scoreRanges: {'0-25':0, '26-50':0, '51-75':0, '76-99':0, '100':0},
+      averageScore: 0
+    };
+
+    statsContent.innerHTML = `
+      <div class="stat-item">
+        <span>Всего попыток:</span>
+        <strong>${stats.totalAttempts}</strong>
+      </div>
+      <div class="stat-item">
+        <span>Средний результат:</span>
+        <strong>${stats.averageScore.toFixed(1)}%</strong>
+      </div>
+      <h4>Распределение результатов:</h4>
+      ${Object.entries(stats.scoreRanges).map(([range, count]) => `
+        <div class="distribution-item">
+          <span>${range}%:</span>
+          <div class="progress-bar">
+            <div class="progress-fill" 
+                 style="width: ${stats.totalAttempts ? (count / stats.totalAttempts) * 100 : 0}%"></div>
+          </div>
+          <span>${count} (${stats.totalAttempts ? ((count / stats.totalAttempts) * 100).toFixed(1) : 0}%)</span>
+        </div>
+      `).join('')}
+    `;
+    
+    modal.style.display = 'flex';
+  } catch (error) {
+    statsContent.innerHTML = '<p>Статистика пока недоступна</p>';
+    modal.style.display = 'flex';
+  }
+}
