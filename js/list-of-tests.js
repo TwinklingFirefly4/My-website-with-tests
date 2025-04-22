@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
  */
 async function loadAvailableTests() {
   try {
+    console.log('обновленный list-of-tests.js');
     const basePath = window.location.hostname.includes("github.io")
       ? `${window.location.origin}/My-website-with-tests/`
       : "./";
