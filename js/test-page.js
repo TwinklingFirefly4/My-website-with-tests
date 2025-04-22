@@ -7,8 +7,9 @@
 // ==============================================
 
 const AppConfig = {
-  basePath:
-  window.location.hostname.includes("github.io") ? `${window.location.origin}/My-website-with-tests/` : "./",
+  basePath: window.location.hostname.includes("github.io")
+    ? `${window.location.origin}/My-website-with-tests/`
+    : "/", // Для локального сервера используем корень
   localStorageKey: "testResults",
   defaultTestFile: "questions.json",
 };
@@ -121,13 +122,14 @@ function createOptionElement(option, index) {
  */
 async function loadTest(testId) {
   try {
-    // const response = await fetch(
-    //   `${AppConfig.basePath}tests/${testId}/questions.json`
-    // );
-    console.log(testId);
+    console.log("Текущий хост:", window.location.hostname);
+    console.log("Базовый путь:", AppConfig.basePath);
     const response = await fetch(
-       `${window.location.origin}/My-website-with-tests/tests/${testId}/questions.json`
+      `${AppConfig.basePath}tests/${testId}/questions.json`
     );
+    // const response = await fetch(
+    //   `${window.location.origin}/My-website-with-tests/tests/${testId}/questions.json`
+    // );
     if (!response.ok) throw new Error("Тест не найден");
 
     const testData = await response.json();
@@ -225,26 +227,33 @@ function updateTestStats(testId, userScore) {
   const stats = JSON.parse(localStorage.getItem(key)) || {
     totalAttempts: 0,
     scoreRanges: {
-      '0-25': 0,
-      '26-50': 0,
-      '51-75': 0,
-      '76-99': 0,
-      '100': 0
+      "0-25": 0,
+      "26-50": 0,
+      "51-75": 0,
+      "76-99": 0,
+      100: 0,
     },
-    averageScore: 0
+    averageScore: 0,
   };
 
   // Обновляем данные
   stats.totalAttempts++;
-  stats.averageScore = (stats.averageScore * (stats.totalAttempts - 1) + userScore) / stats.totalAttempts;
-  
-  const range = 
-    userScore === 100 ? '100' :
-    userScore <= 25 ? '0-25' :
-    userScore <= 50 ? '26-50' :
-    userScore <= 75 ? '51-75' : '76-99';
+  stats.averageScore =
+    (stats.averageScore * (stats.totalAttempts - 1) + userScore) /
+    stats.totalAttempts;
+
+  const range =
+    userScore === 100
+      ? "100"
+      : userScore <= 25
+      ? "0-25"
+      : userScore <= 50
+      ? "26-50"
+      : userScore <= 75
+      ? "51-75"
+      : "76-99";
   stats.scoreRanges[range]++;
-  
+
   // Сохраняем обновленную статистику
   localStorage.setItem(key, JSON.stringify(stats));
 }
@@ -300,7 +309,7 @@ function saveResults(percentageScore, results) {
   const resultsData = {
     score: percentageScore.toFixed(2),
     questions: results,
-    testId: AppState.currentTestId
+    testId: AppState.currentTestId,
   };
 
   localStorage.setItem(AppConfig.localStorageKey, JSON.stringify(resultsData));
