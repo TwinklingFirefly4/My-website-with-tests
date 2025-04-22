@@ -18,15 +18,13 @@ document.addEventListener("DOMContentLoaded", async function () {
  */
 async function loadAvailableTests() {
   try {
-    console.log("Текущий хост:", window.location.hostname);
-    console.log("Базовый путь:", AppConfig.basePath);
     const basePath = window.location.hostname.includes("github.io")
-    ? `${window.location.origin}/My-website-with-tests/`
-    : "./"; 
+      ? `${window.location.origin}/My-website-with-tests/`
+      : "./";
+    console.log("Текущий хост:", window.location.hostname);
+    console.log("Базовый путь:", basePath);
     // const response = await fetch("../tests/tests-manifest.json");
-    const response = await fetch(
-      `${basePath}tests/tests-manifest.json`
-    );
+    const response = await fetch(`${basePath}tests/tests-manifest.json`);
     if (!response.ok) throw new Error("Не удалось загрузить манифест тестов");
     return await response.json();
   } catch (error) {
