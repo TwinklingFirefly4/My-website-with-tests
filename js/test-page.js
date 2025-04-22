@@ -121,12 +121,13 @@ function createOptionElement(option, index) {
  */
 async function loadTest(testId) {
   try {
-    const response = await fetch(
-      `${AppConfig.basePath}tests/${testId}/questions.json`
-    );
     // const response = await fetch(
-    //    `${window.location.origin}/My-website-with-tests/tests/${testId}/questions.json`
+    //   `${AppConfig.basePath}tests/${testId}/questions.json`
     // );
+    console.log(testId);
+    const response = await fetch(
+       `${window.location.origin}/My-website-with-tests/tests/${testId}/questions.json`
+    );
     if (!response.ok) throw new Error("Тест не найден");
 
     const testData = await response.json();
