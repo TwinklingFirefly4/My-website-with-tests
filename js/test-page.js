@@ -8,7 +8,7 @@
 
 const AppConfig = {
   basePath:
-    window.location.hostname === "twinklingfirefly4.github.io" ? "/" : "./",
+  window.location.hostname.includes("github.io") ? `${window.location.origin}/My-website-with-tests/` : "./",
   localStorageKey: "testResults",
   defaultTestFile: "questions.json",
 };
@@ -124,6 +124,9 @@ async function loadTest(testId) {
     const response = await fetch(
       `${AppConfig.basePath}tests/${testId}/questions.json`
     );
+    // const response = await fetch(
+    //    `${window.location.origin}/My-website-with-tests/tests/${testId}/questions.json`
+    // );
     if (!response.ok) throw new Error("Тест не найден");
 
     const testData = await response.json();

@@ -21,7 +21,8 @@ document
 
     // Формируем URL с учетом окружения (GitHub Pages или локальный сервер)
     const isGitHubPages = window.location.hostname.includes("github.io");
-    const basePath = isGitHubPages ? "/My-website-with-tests/" : "./";
+    const basePath = isGitHubPages ? `${window.location.origin}/My-website-with-tests/` : "./";
+    //  `${window.location.origin}/My-website-with-tests/tests/tests-manifest.json`
     window.location.href = `${basePath}test-page.html?test=${resultsData.testId}`;
   });
 
