@@ -8,25 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const navList = document.querySelector(".nav-list");
       const header = document.querySelector(".header");
       
-      // Функция для обновления позиции меню
       const updateMenuPosition = function () {
         const headerHeight = header.offsetHeight;
         navList.style.top = `${headerHeight}px`;
       };
       
-      // Функция закрытия меню
       const closeMenu = () => {
         navList.classList.remove("active");
       };
       
-      // Обработчик клика по кнопке
       navToggle.addEventListener("click", function (e) {
-        e.stopPropagation(); // Предотвращаем срабатывание document.click
+        e.stopPropagation();
         updateMenuPosition();
         navList.classList.toggle("active");
       });
       
-      // Обработчик клика по документу
       const handleClickOutside = (event) => {
         if (window.innerWidth < 768 && 
             navList.classList.contains("active") && 
@@ -36,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       };
       
-      // Обработчик ресайза
       const handleResize = () => {
         if (window.innerWidth >= 768) {
           navList.classList.remove("active");
@@ -46,9 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       };
       
-      // Инициализация
       updateMenuPosition();
       document.addEventListener('click', handleClickOutside);
       window.addEventListener('resize', handleResize);
+      
+      // Инициализация навигации после загрузки
+      // setTimeout(updateNavigation, 100);
     });
 });

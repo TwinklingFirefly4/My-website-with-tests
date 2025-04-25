@@ -295,6 +295,62 @@ body {
   transform: translateX(200%);
 }
 
+/* Стили для поля с паролем */
+.password-field {
+  position: relative;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.password-field input {
+  padding-right: 40px; /* Оставляем место для кнопки */
+  width: 100%;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  padding: 0;
+  margin: 0 !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.password-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform:translateY(-50%) !important;
+}
+
+/* Стили для ошибок */
+.input-error {
+  border: 2px solid #ff4444 !important;
+}
+
+.error-message {
+  color: #ff4444;
+  font-size: 0.8rem;
+  margin: 5px 0 10px;
+  min-height: 20px;
+  width: 100%;
+  text-align: left;
+  display: none;
+}
+
+.error-message.show {
+  display: block;
+}
+
 @media (max-width: 768px) {
   .container {
     display: flex;
@@ -318,6 +374,9 @@ body {
     padding: 30px 25px;
     opacity: 1 !important;
     z-index: auto !important;
+  }
+  #signup-form{
+    width: 100%;
   }
 
   /* Форма регистрации - изначально скрыта */
