@@ -29,24 +29,52 @@ async function handleSignUp(e) {
   console.log("Начало регистрации");
 
   const email = document.getElementById("signup-email").value;
+  const username = document.getElementById("signup-username").value;
   const password = document.getElementById("signup-password").value;
+  const passwordConfirm = document.getElementById(
+    "signup-password-confirm"
+  ).value;
   const errorElement = document.getElementById("signup-error");
+
+  // Сброс предыдущих ошибок
+  errorElement.innerHTML = "";
+  errorElement.style.display = "none";
 
   // Валидация пароля
   const errors = validatePassword(password);
+
+  // Проверка совпадения паролей
+  if (password !== passwordConfirm) {
+    errors.push("Пароли не совпадают");
+  }
+
+  // Проверка имени пользователя
+  if (username.length < 3) {
+    errors.push("Имя пользователя должно содержать минимум 3 символа");
+  }
+
   if (errors.length > 0) {
     errorElement.innerHTML = errors.join("<br>");
     errorElement.style.display = "block";
     return;
   }
 
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+
   try {
     console.log("Попытка регистрации");
+
+    // 1. Регистрация в Supabase Auth
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: window.location.origin,
+        data: {
+          username: username,
+        },
       },
     });
 
@@ -54,6 +82,26 @@ async function handleSignUp(e) {
       console.error("Ошибка регистрации:", error);
       throw error;
     }
+    // 2. Получаем сессию после регистрации
+    const {
+      data: { session },
+      error: sessionError,
+    } = await supabase.auth.getSession();
+
+    if (sessionError || !session) {
+      throw new Error("Не удалось создать сессию после регистрации");
+    }
+
+    // 2. Сохранение профиля в отдельной таблице (рекомендуется)
+    const { error: profileError } = await supabase
+    .from('profiles')
+    .insert({
+      id: session.user.id,
+      username: username,
+      email: email
+    });
+
+    if (profileError) throw profileError;
 
     console.log("Успешная регистрация", data);
     alert("Регистрация успешна! Проверьте email для подтверждения.");
@@ -62,6 +110,9 @@ async function handleSignUp(e) {
     console.error("Ошибка:", error);
     errorElement.innerHTML = error.message;
     errorElement.style.display = "block";
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Sign Up";
   }
 }
 
@@ -106,35 +157,35 @@ async function handleSignIn(e) {
  * Обновляет UI для авторизованного пользователя
  */
 function setAuthenticatedUI() {
-  const authLink = document.getElementById('auth-link');
-  const createItem = document.getElementById('create');
-  
+  const authLink = document.getElementById("auth-link");
+  const createItem = document.getElementById("create");
+
   if (authLink) {
-    authLink.textContent = 'Выход';
-    authLink.href = '#';
+    authLink.textContent = "Выход";
+    authLink.href = "#";
     authLink.onclick = async (e) => {
       e.preventDefault();
       await signOut();
     };
   }
-  
-  if (createItem) createItem.style.display = 'block';
+
+  if (createItem) createItem.style.display = "block";
 }
 
 /**
  * Обновляет UI для неавторизованного пользователя
  */
 function setUnauthenticatedUI() {
-  const authLink = document.getElementById('auth-link');
-  const createItem = document.getElementById('create');
-  
+  const authLink = document.getElementById("auth-link");
+  const createItem = document.getElementById("create");
+
   if (authLink) {
-    authLink.textContent = 'Вход';
-    authLink.href = './login-page.html';
+    authLink.textContent = "Вход";
+    authLink.href = "./login-page.html";
     authLink.onclick = null;
   }
-  
-  if (createItem) createItem.style.display = 'none';
+
+  if (createItem) createItem.style.display = "none";
 }
 
 /**
@@ -143,7 +194,10 @@ function setUnauthenticatedUI() {
 async function updateNavigation() {
   console.log("Обновление навигации...");
   try {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
 
     if (error || !user) {
       console.log("Пользователь не авторизован");
@@ -155,7 +209,9 @@ async function updateNavigation() {
     setAuthenticatedUI();
   } catch (error) {
     if (error.message.includes("Auth session missing")) {
-      console.log("Сессия аутентификации отсутствует - пользователь не авторизован");
+      console.log(
+        "Сессия аутентификации отсутствует - пользователь не авторизован"
+      );
       setUnauthenticatedUI();
     } else {
       console.error("Ошибка обновления навигации:", error);
@@ -191,20 +247,36 @@ async function signOut() {
  */
 function handleAuthStateChange(event, session) {
   console.log("Изменение статуса авторизации:", event);
-  
-  if (event === 'SIGNED_OUT' || event === 'INITIAL_SESSION') {
+
+  if (event === "SIGNED_OUT" || event === "INITIAL_SESSION") {
     setUnauthenticatedUI();
-  } else if (event === 'SIGNED_IN') {
+  } else if (event === "SIGNED_IN") {
     setAuthenticatedUI();
   }
 }
+
+async function handlePasswordUpdate() {
+  // Проверяем, есть ли токен в URL (после перенаправления)
+  const hash = window.location.hash;
+  if (hash.includes('access_token') && hash.includes('type=recovery')) {
+    // Перенаправляем на страницу обновления с сохранением токена
+    window.location.href = '/update-password.html' + hash;
+  }
+}
+
+// Вызовите при загрузке страницы
+document.addEventListener('DOMContentLoaded', handlePasswordUpdate);
 
 /**
  * Инициализирует обработчики событий
  */
 function initEventListeners() {
-  document.getElementById("signup-form")?.addEventListener("submit", handleSignUp);
-  document.getElementById("signin-form")?.addEventListener("submit", handleSignIn);
+  document
+    .getElementById("signup-form")
+    ?.addEventListener("submit", handleSignUp);
+  document
+    .getElementById("signin-form")
+    ?.addEventListener("submit", handleSignIn);
   authState.subscribe(updateNavigation);
   supabase.auth.onAuthStateChange(handleAuthStateChange);
 }

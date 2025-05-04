@@ -4,11 +4,11 @@
  * @class AuthState
  */
 
-import supabase from './supabase-init.js';
+import supabase from "./supabase-init.js";
 
 class AuthState {
   static instance = null;
-  
+
   /**
    * Создает экземпляр AuthState (Singleton)
    * @constructor
@@ -36,12 +36,13 @@ class AuthState {
    * @private
    */
   _setupSessionListener() {
-    supabase.auth.getSession()
+    supabase.auth
+      .getSession()
       .then(({ data }) => {
         this._session = data.session;
         this._notifyAll();
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.message.includes("Auth session missing")) {
           this._session = null;
           this._notifyAll();
@@ -79,7 +80,7 @@ class AuthState {
    */
   _notifyAll() {
     localStorage.setItem("authState", JSON.stringify(this._session));
-    this._callbacks.forEach(cb => cb());
+    this._callbacks.forEach((cb) => cb());
   }
 
   /**
@@ -100,6 +101,12 @@ class AuthState {
     return () => {
       this._callbacks = this._callbacks.filter((cb) => cb !== callback);
     };
+  }
+  /**
+   * Проверяет, авторизован ли пользователь
+   */
+  isAuthenticated() {
+    return !!this._session;
   }
 }
 

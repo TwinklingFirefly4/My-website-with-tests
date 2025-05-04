@@ -133,6 +133,11 @@ body {
   background-color: transparent;
   border-color: var(--text-light);
 }
+#forgot-password{
+  font-size: 10px;
+  background-color: transparent;
+  color:var(--primary-color);
+}
 
 .container form {
   background-color: var(--bg-container);

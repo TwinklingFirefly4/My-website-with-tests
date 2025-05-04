@@ -11,21 +11,37 @@ loginBtn.addEventListener("click", () => {
 
 // Функция для показа/скрытия пароля
 function setupPasswordToggle() {
-  document.querySelectorAll(".password-toggle").forEach((toggle) => {
-    toggle.addEventListener("click", (e) => {
-      const input = e.target.closest(".password-field").querySelector("input");
-      const icon = e.target.querySelector("i") || e.target;
-
-      if (input.type === "password") {
-        input.type = "text";
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
+  document.querySelectorAll('.password-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      const field = e.currentTarget.closest('.password-field');
+      const input = field.querySelector('input');
+      const icon = field.querySelector('i');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
       } else {
-        input.type = "password";
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
+        input.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
       }
     });
   });
 }
-setupPasswordToggle();
+
+// Сброс пароля
+async function handlePasswordReset() {
+  const email = document.getElementById('signin-email').value;
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/update-password.html'
+  });
+
+  if (error) {
+    alert('Ошибка: ' + error.message);
+  } else {
+    alert('Ссылка для сброса отправлена на ' + email);
+  }
+}
+document.getElementById('forgot-password').addEventListener('click', handlePasswordReset);
+
+// Вызовите при загрузке страницы
+document.addEventListener('DOMContentLoaded', setupPasswordToggle);

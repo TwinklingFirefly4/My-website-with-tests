@@ -1,7 +1,5 @@
 /**
  * Инициализирует и экспортирует клиент Supabase
- * @module supabase-init
- * @returns {object} Supabase client instance
  */
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
@@ -21,8 +19,6 @@ const AUTH_OPTIONS = {
 
 /**
  * Создает и настраивает клиент Supabase
- * @function
- * @returns {object} Инициализированный клиент Supabase
  */
 function initializeSupabase() {
   try {
@@ -36,4 +32,5 @@ function initializeSupabase() {
 }
 
 const supabase = initializeSupabase();
+// Экспорт клиента для использования в других модулях
 export default supabase;

@@ -15,6 +15,7 @@
     <script type="module" src="js/supabase-init.js"></script>
     <script type="module" src="js/auth.js"></script>
     <script type="module" src="js/nav.js"></script>
+    <script type="module" src="js/results.js"></script>
     <title>Your results</title>
     <!-- <script src="js/results.js" defer></script> -->
   </head>
@@ -103,87 +104,19 @@
               <a href="#" class="icon"><i class="fa-brands fa-vk"></i></a>
             </div>
             <div class="standart-label">Оставить комментарий</div>
-            <div class="comment-form">
+            <form class="comment-form" id="comment-form">
               <textarea placeholder="Введите ваш комментарий"></textarea>
               <button type="submit">Отправить</button>
-            </div>
-            <div class="standart-label">Лучшие комментарии</div>
-            <div class="comments">
-              <div class="comment">
-                <div class="comment-header">
-                  <span class="comment-author">Автор 1</span>
-                  <span class="comment-time">10 минут назад</span>
-                </div>
-                <div class="comment-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-                  hic explicabo odio omnis laborum! Magnam dicta laudantium
-                  eligendi soluta, natus itaque ratione ullam ex ipsam totam
-                  necessitatibus beatae ab in.
-                </div>
-                <div class="comment-actions">
-                  <div class="like">
-                    <img src="my-img/icons/like.svg" />
-                    4
-                  </div>
-                  <div class="like">
-                    <img src="my-img/icons/dislike.svg" />0
-                  </div>
-                </div>
-              </div>
-              <div class="comment">
-                <div class="comment-header">
-                  <span class="comment-author">Автор 2</span>
-                  <span class="comment-time">15 минут назад</span>
-                </div>
-                <div class="comment-text">Можно было и лучше</div>
-                <div class="comment-actions">
-                  <div class="like">
-                    <img src="my-img/icons/like.svg" />
-                    4
-                  </div>
-                  <div class="like">
-                    <img src="my-img/icons/dislike.svg" />0
-                  </div>
-                </div>
-              </div>
-              <div class="comment">
-                <div class="comment-header">
-                  <span class="comment-author">Автор 3</span>
-                  <span class="comment-time">20 минут назад</span>
-                </div>
-                <div class="comment-text">Куда уже лучше</div>
-                <div class="comment-actions">
-                  <div class="like">
-                    <img src="my-img/icons/like.svg" />
-                    4
-                  </div>
-                  <div class="like">
-                    <img src="my-img/icons/dislike.svg" />0
-                  </div>
-                </div>
-              </div>
-              <div class="comment">
-                <div class="comment-header">
-                  <span class="comment-author">Автор 4</span>
-                  <span class="comment-time">25 минут назад</span>
-                </div>
-                <div class="comment-text">Разрабу респект</div>
-                <div class="comment-actions">
-                  <div class="like">
-                    <img src="my-img/icons/like.svg" />
-                    4
-                  </div>
-                  <div class="like">
-                    <img src="my-img/icons/dislike.svg" />0
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="unauthorized-message">
+            </form>
+            <div class="unauthorized-message" id="unauthorized-message">
               Только авторизованные пользователи могут оставить комментарий.
-              <a href="/login">Войти</a>
+              <a href="login-page.html">Войти</a>
+            </div>
+            <div class="standart-label">Комментарии</div>
+            <div class="comments" id="comments-container">
             </div>
           </div>
+          <button id="load-more" class="btn show-more hidden">Показать ещё</button>
         </div>
       </div>
     </div>
@@ -194,6 +127,6 @@
         <div class="creator">© WebDesign Master Catherine</div>
       </div>
     </div>
-    <script src="js/results.js"></script>
   </body>
 </html>
+

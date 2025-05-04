@@ -230,6 +230,13 @@ body {
 .hidden {
   opacity: 0;
 }
+.show-more{
+  margin: auto;
+  margin-top: 1rem;
+}
+.show-more:hover{
+  transform: none;
+}
 
 .answer-status {
   font-size: 1rem;
@@ -354,6 +361,14 @@ body {
   gap: 0.3rem;
   font-size: 0.9em;
 }
+.dislike-btn, .like-btn{
+  background-color: transparent;
+  border: none;
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
 .unauthorized-message {
   margin-top: var(--space-md);
@@ -375,6 +390,9 @@ body {
   font-size: 1rem;
   color: #666;
   margin-bottom: var(--space-xs);
+}
+.hidden {
+  display: none;
 }
 
 /* statistic modal */
