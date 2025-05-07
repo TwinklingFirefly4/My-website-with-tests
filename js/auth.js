@@ -26,7 +26,6 @@ function validatePassword(password) {
  */
 async function handleSignUp(e) {
   e.preventDefault();
-  console.log("Начало регистрации");
 
   const email = document.getElementById("signup-email").value;
   const username = document.getElementById("signup-username").value;
@@ -64,8 +63,6 @@ async function handleSignUp(e) {
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
 
   try {
-    console.log("Попытка регистрации");
-
     // 1. Регистрация в Supabase Auth
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -103,7 +100,6 @@ async function handleSignUp(e) {
 
     if (profileError) throw profileError;
 
-    console.log("Успешная регистрация", data);
     alert("Регистрация успешна! Проверьте email для подтверждения.");
     window.location.href = "login-page.html";
   } catch (error) {
@@ -122,27 +118,22 @@ async function handleSignUp(e) {
  */
 async function handleSignIn(e) {
   e.preventDefault();
-  console.log("Начало входа");
 
   const email = document.getElementById("signin-email").value;
   const password = document.getElementById("signin-password").value;
   const errorElement = document.getElementById("signin-error");
 
   try {
-    console.log("Попытка входа");
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-
-    console.log("Результат входа:", { data, error });
 
     if (error) {
       console.error("Ошибка входа:", error);
       throw error;
     }
 
-    console.log("Успешный вход", data);
     setTimeout(() => {
       window.location.href = "index.html";
     }, 100);
@@ -192,7 +183,6 @@ function setUnauthenticatedUI() {
  * Обновляет навигацию в зависимости от статуса аутентификации
  */
 async function updateNavigation() {
-  console.log("Обновление навигации...");
   try {
     const {
       data: { user },
@@ -200,18 +190,12 @@ async function updateNavigation() {
     } = await supabase.auth.getUser();
 
     if (error || !user) {
-      console.log("Пользователь не авторизован");
       setUnauthenticatedUI();
       return;
     }
-
-    console.log("Пользователь авторизован");
     setAuthenticatedUI();
   } catch (error) {
     if (error.message.includes("Auth session missing")) {
-      console.log(
-        "Сессия аутентификации отсутствует - пользователь не авторизован"
-      );
       setUnauthenticatedUI();
     } else {
       console.error("Ошибка обновления навигации:", error);
@@ -224,7 +208,6 @@ async function updateNavigation() {
  */
 async function signOut() {
   try {
-    console.log("Попытка выхода");
     const { error } = await supabase.auth.signOut();
 
     if (error) {
@@ -232,7 +215,6 @@ async function signOut() {
       throw error;
     }
 
-    console.log("Успешный выход");
     window.location.href = "login-page.html";
   } catch (error) {
     console.error("Ошибка при выходе:", error);
@@ -246,7 +228,6 @@ async function signOut() {
  * @param {object} session - Данные сессии
  */
 function handleAuthStateChange(event, session) {
-  console.log("Изменение статуса авторизации:", event);
 
   if (event === "SIGNED_OUT" || event === "INITIAL_SESSION") {
     setUnauthenticatedUI();
@@ -285,7 +266,6 @@ function initEventListeners() {
  * Инициализирует приложение после загрузки DOM
  */
 function initApp() {
-  console.log("DOM загружен");
   initEventListeners();
   updateNavigation();
 }

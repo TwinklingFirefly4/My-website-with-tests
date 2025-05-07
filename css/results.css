@@ -31,6 +31,7 @@
   font-size: 16px;
   
   /* Spacing variables */
+  --index: calc(1vw + 1vh);
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -396,50 +397,95 @@ body {
 }
 
 /* statistic modal */
-.modal-overlay {
+/* Стили модального окна */
+/* Стили модального окна */
+.modal {
+  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
+  background-color: var(--color-comment-textarea-bg);
+  margin: 10% auto;
+  padding: var(--space-md);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 12px var(--color-main-container-shadow);
+  width: 90%;
   max-width: 500px;
-  position: relative;
+  animation: modalFadeIn var(--transition-speed);
+  color: var(--color-dark-green-transparent);
 }
 
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close {
+  color: var(--color-dark-green-transparent);
+  float: right;
+  font-size: var(--space-lg);
+  font-weight: bold;
   cursor: pointer;
+  transition: color var(--transition-speed);
 }
 
-.progress-bar {
-  height: 20px;
-  background: #f0f0f0;
-  border-radius: 10px;
+.close:hover {
+  color: var(--color-dark-green);
+}
+
+.stats-container {
+  margin-top: var(--space-md);
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-text-light-transparent);
+}
+
+.stats-range {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-dark-green-transparent);
+}
+
+.stats-meta {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+}
+
+.stats-meta p {
+  margin: var(--space-xs) 0;
+}
+
+/* h2 {
+  color: var(--color-dark-green);
+  margin-bottom: var(--space-sm);
+} */
+
+/* Кнопка для открытия статистики */
+.stats-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
   margin: 10px 0;
 }
 
-.progress-fill {
-  height: 100%;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #ff6b6b, #ffa3a3);
-  transition: width 0.5s ease;
+.stats-btn:hover {
+  background-color: #5a6268;
 }
 
 /* Footer Styling */

@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     // Загружаем список доступных тестов
     const tests = await loadAvailableTests();
+    console.log(tests);
     // Заполняем сетку тестов
     populateTestsGrid(tests);
 
@@ -18,16 +19,28 @@ document.addEventListener("DOMContentLoaded", async function () {
  */
 async function loadAvailableTests() {
   try {
-    console.log('обновленный list-of-tests.js');
-    const basePath = window.location.hostname.includes("github.io")
-      ? `${window.location.origin}/My-website-with-tests/`
-      : "./";
-    console.log("Текущий хост:", window.location.hostname);
-    console.log("Базовый путь:", basePath);
-    // const response = await fetch("../tests/tests-manifest.json");
-    const response = await fetch(`${basePath}tests/tests-manifest.json`);
-    if (!response.ok) throw new Error("Не удалось загрузить манифест тестов");
-    return await response.json();
+    const { data, error } = await supabase
+      .from('tests')
+      .select(`
+        id,
+        title,
+        description,
+        preview_image,
+        difficulty,
+        questions:questions(count)
+      `)
+      .eq('is_public', true);
+
+    if (error) throw error;
+
+    return data.map(test => ({
+      id: test.id,
+      name: test.title,
+      description: test.description,
+      previewImage: test.preview_image,
+      questionsCount: test.questions[0].count, // Доступ к count через массив
+      difficulty: test.difficulty
+    }));
   } catch (error) {
     console.error("Ошибка загрузки тестов:", error);
     throw error;

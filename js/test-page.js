@@ -118,29 +118,56 @@ function createOptionElement(option, index) {
 }
 
 /**
- * Загружает вопросы из JSON-файла
+ * Загружает вопросы из базы данных
  */
 async function loadTest(testId) {
   try {
-    console.log("Текущий хост:", window.location.hostname);
-    console.log("Базовый путь:", AppConfig.basePath);
-    const response = await fetch(
-      `${AppConfig.basePath}tests/${testId}/questions.json`
-    );
-    // const response = await fetch(
-    //   `${window.location.origin}/My-website-with-tests/tests/${testId}/questions.json`
-    // );
-    if (!response.ok) throw new Error("Тест не найден");
+    // Загружаем тест с вопросами и вариантами одним запросом
+    const { data, error } = await supabase
+      .from("tests")
+      .select(
+        `
+        title,
+        questions:questions(
+          id,
+          question_text,
+          image_url,
+          options:options(
+            id,
+            option_text,
+            is_correct,
+            score_value
+          )
+        )
+      `
+      )
+      .eq("id", testId)
+      .order("question_order", { foreignTable: "questions" })
+      .order("option_order", { foreignTable: "questions.options" })
+      .single();
 
-    const testData = await response.json();
-    AppState.questions = testData.questions;
-    AppState.testName = testData.testName;
-    AppState.userAnswers = Array(AppState.questions.length).fill("");
+    if (error) throw error;
+
+    // Форматируем данные
+    const formattedQuestions = data.questions.map((q) => ({
+      question: q.question_text,
+      image: q.image_url,
+      options: q.options.map((o, idx) => ({
+        text: o.option_text,
+        value: o.score_value,
+        isCorrect: o.is_correct,
+      })),
+      correctAnswer: q.options.findIndex((o) => o.is_correct),
+    }));
+
+    AppState.questions = formattedQuestions;
+    AppState.testName = data.title;
+    AppState.userAnswers = Array(formattedQuestions.length).fill("");
 
     return true;
   } catch (error) {
     console.error("Ошибка загрузки теста:", error);
-    showError("Не удалось загрузить вопросы теста");
+    showError("Не удалось загрузить тест");
     return false;
   }
 }
@@ -220,57 +247,6 @@ function toggleNavigationButtons(isReset = false) {
 // ==============================================
 
 /**
- * Обновляет статистику
- */
-function updateTestStats(testId, userScore) {
-  const key = `test-stats-${testId}`;
-  const stats = JSON.parse(localStorage.getItem(key)) || {
-    totalAttempts: 0,
-    scoreRanges: {
-      "0-25": 0,
-      "26-50": 0,
-      "51-75": 0,
-      "76-99": 0,
-      100: 0,
-    },
-    averageScore: 0,
-  };
-
-  // Обновляем данные
-  stats.totalAttempts++;
-  stats.averageScore =
-    (stats.averageScore * (stats.totalAttempts - 1) + userScore) /
-    stats.totalAttempts;
-
-  const range =
-    userScore === 100
-      ? "100"
-      : userScore <= 25
-      ? "0-25"
-      : userScore <= 50
-      ? "26-50"
-      : userScore <= 75
-      ? "51-75"
-      : "76-99";
-  stats.scoreRanges[range]++;
-
-  // Сохраняем обновленную статистику
-  localStorage.setItem(key, JSON.stringify(stats));
-}
-
-/**
- * Вычисляет и отображает результаты теста
- */
-function showResults() {
-  const { totalScore, maxScore, results } = calculateResults();
-  const percentageScore = (totalScore / maxScore) * 100;
-
-  saveResults(percentageScore, results);
-  updateTestStats(AppState.currentTestId, percentageScore);
-  window.location.href = "./results.html";
-}
-
-/**
  * Вычисляет результаты теста
  */
 function calculateResults() {
@@ -303,6 +279,33 @@ function calculateResults() {
 }
 
 /**
+ * Вычисляет и отображает результаты теста
+ */
+function showResults() {
+  const { totalScore, maxScore, results } = calculateResults();
+  const percentageScore = (totalScore / maxScore) * 100;
+
+  // В функции showResults():
+  saveTestResults(percentageScore, results)
+    .then((savedResult) => {
+      console.log("Результат сохранён в Supabase:", savedResult);
+      window.location.href = `./results.html?test_id=${savedResult.test_id}&result_id=${savedResult.id}`;
+    })
+    .catch((error) => {
+      console.error("Ошибка сохранения:", error);
+      // Fallback в localStorage
+      const resultData = {
+        score: percentageScore,
+        questions: results,
+        testId: AppState.currentTestId,
+        timestamp: new Date().toISOString(),
+      };
+      localStorage.setItem("testResults", JSON.stringify(resultData));
+      window.location.href = `./results.html?test_id=${AppState.currentTestId}`;
+    });
+}
+
+/**
  * Сохраняет результаты в localStorage
  */
 function saveResults(percentageScore, results) {
@@ -313,6 +316,111 @@ function saveResults(percentageScore, results) {
   };
 
   localStorage.setItem(AppConfig.localStorageKey, JSON.stringify(resultsData));
+}
+
+async function saveTestResults(score, results) {
+  try {
+    // 1. Получаем сообщение для результата
+    const roundedScore = Math.round(score); // Округляем до целого
+    const { data: message, error: messageError } = await supabase
+      .from("result_messages")
+      .select("*")
+      .lte("min_score", score) // score >= min_score
+      .gte("max_score", score) // score <= max_score
+      .single();
+
+    // const { data: message, error: messageError } = await supabase
+    //   .from("result_messages")
+    //   .select("*")
+    //   .gte("min_score", score)
+    //   .lte("max_score", score)
+    //   .single();
+
+    if (messageError || !message) {
+      console.log(score);
+      console.log(roundedScore);
+      console.error("Ошибка при получении message:", messageError);
+      throw new Error("Не найдено сообщение для результата");
+    }
+    console.log("::");
+    console.log(message);
+    // 2. Получаем пользователя (может быть null)
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+    if (userError) console.warn("Пользователь не авторизован:", userError);
+
+    // 3. Формируем данные для вставки
+    const resultData = {
+      user_id: user?.id || null,
+      test_id: AppState.currentTestId,
+      score: score,
+      result_message_id: message.id,
+      details: {
+        questions: results.map((r) => ({
+          question: r.question,
+          image: r.image,
+          user_answer: r.userAnswer,
+          correct_answer: r.correctAnswer,
+          is_correct: r.isCorrect,
+        })),
+      },
+    };
+
+    console.log("Данные для сохранения:", resultData); // Важно для отладки!
+
+    // 4. Вставляем данные
+    const { data, error: insertError } = await supabase
+      .from("results")
+      .insert(resultData)
+      .select("id, test_id")
+      .single();
+
+    if (insertError) {
+      console.error("Ошибка вставки:", insertError);
+      throw insertError;
+    }
+
+    console.log("Успешно сохранено:", data);
+    await updateTestStats(AppState.currentTestId, score);
+    return data;
+  } catch (error) {
+    console.error("Критическая ошибка в saveTestResults:", error);
+    throw error; // Пробрасываем для обработки в showResults()
+  }
+}
+
+/**
+ * Обновляет статистику
+ */
+async function updateTestStats(testId, score) {
+  try {
+    const range =
+      score === 100
+        ? "100"
+        : score >= 76
+        ? "76-99"
+        : score >= 51
+        ? "51-75"
+        : score >= 26
+        ? "26-50"
+        : "0-25";
+
+    console.log("Обновление статистики:", { testId, score, range });
+
+    const { error } = await supabase.rpc("update_test_stats", {
+      p_test_id: testId,
+      p_range: range,
+      p_score: score,
+    });
+
+    if (error) throw error;
+    console.log("Статистика обновлена успешно");
+  } catch (error) {
+    console.error("Ошибка в updateTestStats:", error);
+    throw error; // Пробрасываем ошибку, если нужно прервать цепочку
+  }
 }
 
 // ==============================================

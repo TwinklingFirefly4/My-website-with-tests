@@ -1,0 +1,398 @@
+@font-face {
+  font-family: raleway_f;
+  src: url(../fonts/raleway-regular.woff2);
+}
+@font-face {
+  font-family: raleway_f;
+  src: url(../fonts/raleway-black.woff2);
+  font-weight: 900;
+}
+
+:root {
+  --color-bg-body: #f2f2f2;
+  --color-main-container: #ebe88dde;
+  --color-main-container-shadow: #ffe047e6;
+  --color-text-light: #fffdc0;
+  --color-text-light-transparent: #fffdc0bd;
+  --color-text-light-more-transparent: #fffdc0c7;
+  --color-text-light-most-transparent: #fffdc0d7;
+  --color-text-light-very-transparent: #fffdc0d9;
+  --color-dark-green: #003e1f;
+  --color-dark-green-transparent: #003e1fce;
+  --color-right-answer: #18ea18;
+  --color-wrong-answer: #ff0000;
+  --color-unauthorized-text: #666666;
+  --color-link: #4caf50;
+  --color-social-icons: #003e1f;
+  --color-comment-textarea-bg: #fffdc0;
+  --color-footer-bg: #003e1f;
+
+  /* Base font size for rem calculations */
+  font-size: 16px;
+
+  /* Spacing variables */
+  --index: calc(1vw + 1vh);
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 2.5rem;
+
+  /* Border radius */
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-lg: 1.5rem;
+
+  /* Transition */
+  --transition-speed: 0.3s;
+}
+body {
+  font-family: raleway_f, sans-serif;
+  margin: 0;
+  background-color: var(--color-bg-body);
+  min-height: 100vh;
+}
+
+.background {
+  background: url("../my-img/fullSizeImg/flowers-blur-background.jpg")
+    center/cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.test-creator {
+  max-width: 800px;
+  margin: var(--space-lg) auto;
+  margin-top: calc(var(--index) * 4);
+  padding: var(--space-md);
+  background-color: var(--color-main-container);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 12px var(--color-main-container-shadow);
+  color: var(--color-dark-green);
+}
+
+.test-creator h1 {
+  color: var(--color-dark-green);
+  text-align: center;
+  margin-bottom: var(--space-md);
+  font-size: 1.8rem;
+}
+
+.form-section {
+  background: var(--color-text-light-most-transparent);
+  padding: var(--space-md);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-md);
+}
+
+.form-section label {
+  display: block;
+  margin: var(--space-sm) 0 var(--space-xs);
+  font-weight: bold;
+  color: var(--color-dark-green-transparent);
+}
+
+.form-section input[type="text"],
+.form-section input[type="url"],
+.form-section textarea,
+.form-section select {
+  width: 100%;
+  padding: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  border: 1px solid var(--color-text-light-transparent);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-text-light);
+  color: var(--color-dark-green);
+  transition: border-color var(--transition-speed);
+}
+
+.form-section input[type="text"]:focus,
+.form-section input[type="url"]:focus,
+.form-section textarea:focus,
+.form-section select:focus {
+  outline: none;
+  border-color: var(--color-dark-green);
+  box-shadow: 0 0 0 2px var(--color-dark-green-transparent);
+}
+
+.form-section textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.question-form {
+  background: var(--color-text-light-most-transparent);
+  border: 1px solid var(--color-text-light-transparent);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  border-radius: var(--border-radius-md);
+  position: relative;
+}
+
+.options-container {
+  margin: var(--space-sm) 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+button {
+  background: var(--color-dark-green);
+  color: var(--color-text-light);
+  border: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all var(--transition-speed);
+  margin-right: var(--space-xs);
+}
+
+button:hover {
+  background: var(--color-dark-green-transparent);
+  transform: translateY(-1px);
+}
+
+#addQuestionBtn {
+  background: var(--color-dark-green);
+  margin-bottom: var(--space-md);
+}
+
+#saveTestBtn {
+  background: var(--color-dark-green);
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1.1rem;
+  display: block;
+  width: 100%;
+}
+
+.remove-question-btn {
+  background: var(--color-wrong-answer);
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+}
+
+.remove-question-btn:hover {
+  background: #cc0000;
+}
+
+/* Для чекбоксов правильных ответов */
+.option input[type="checkbox"] {
+  accent-color: var(--color-dark-green);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Стили для блока вопроса */
+.question-form {
+    background: var(--color-text-light-most-transparent);
+    border: 1px solid var(--color-text-light-transparent);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    border-radius: var(--border-radius-md);
+    position: relative;
+    transition: box-shadow var(--transition-speed);
+}
+
+.question-form:hover {
+    box-shadow: 0 2px 8px var(--color-main-container-shadow);
+}
+
+.question-form h3 {
+    color: var(--color-dark-green);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--color-text-light-transparent);
+    padding-bottom: var(--space-xs);
+}
+
+/* Стили для полей ввода вопроса */
+.question-form input[type="text"],
+.question-form input[type="url"] {
+    width: 100%;
+    padding: var(--space-xs);
+    margin-bottom: var(--space-sm);
+    border: 1px solid var(--color-text-light-transparent);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-text-light);
+    color: var(--color-dark-green);
+    transition: all var(--transition-speed);
+}
+
+.question-form input[type="text"]:focus,
+.question-form input[type="url"]:focus {
+    outline: none;
+    border-color: var(--color-dark-green);
+    box-shadow: 0 0 0 2px var(--color-dark-green-transparent);
+}
+
+/* Контейнер для вариантов ответов */
+.options-container {
+    margin: var(--space-md) 0;
+    border-top: 1px dashed var(--color-text-light-transparent);
+    padding-top: var(--space-sm);
+}
+
+/* Стили для отдельного варианта ответа */
+.option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    padding: var(--space-xs);
+    background-color: var(--color-text-light-very-transparent);
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-speed);
+}
+
+.option:hover {
+    background-color: var(--color-text-light-more-transparent);
+}
+
+.option-text {
+    flex-grow: 1;
+    padding: var(--space-xs);
+    border: 1px solid var(--color-text-light-transparent);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-text-light);
+    color: var(--color-dark-green);
+    transition: all var(--transition-speed);
+}
+
+.option-text:focus {
+    outline: none;
+    border-color: var(--color-dark-green);
+    box-shadow: 0 0 0 1px var(--color-dark-green-transparent);
+}
+
+/* Стили для радио-кнопки правильного ответа */
+.correct-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-dark-green-transparent);
+    cursor: pointer;
+    white-space: nowrap;
+    margin-left: var(--space-xs);
+}
+
+.correct-option input[type="radio"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-dark-green-transparent);
+    border-radius: 50%;
+    transition: all var(--transition-speed);
+    position: relative;
+    cursor: pointer;
+}
+
+.correct-option input[type="radio"]:checked {
+    border-color: var(--color-dark-green);
+    background-color: var(--color-dark-green-transparent);
+}
+
+.correct-option input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-dark-green);
+    border-radius: 50%;
+}
+
+/* Стили для кнопок */
+.add-option-btn {
+    background: var(--color-dark-green-transparent);
+    color: var(--color-text-light);
+    margin-right: var(--space-sm);
+}
+
+.add-option-btn:hover {
+    background: var(--color-dark-green);
+}
+
+.remove-question-btn {
+    background: var(--color-wrong-answer);
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+}
+
+.remove-question-btn:hover {
+    background: #cc0000;
+    transform: translateY(-1px);
+}
+
+.remove-option-btn {
+    background: none;
+    color: var(--color-wrong-answer);
+    border: 1px solid var(--color-wrong-answer);
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.remove-option-btn:hover {
+    background: var(--color-wrong-answer);
+    color: white;
+}
+
+/* Анимация при добавлении новых элементов */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question-form, .option {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Адаптивные стили */
+@media (max-width: 600px) {
+    .option {
+        flex-wrap: wrap;
+    }
+    
+    .correct-option {
+        order: 1;
+        width: 100%;
+        margin-top: var(--space-xs);
+        margin-left: 0;
+    }
+    
+    .remove-option-btn {
+        margin-left: auto;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .test-creator {
+    padding: var(--space-sm);
+    margin: var(--space-sm);
+    margin-top: calc(var(--index) * 4.5);
+  }
+
+  .form-section,
+  .question-form {
+    padding: var(--space-sm);
+  }
+}

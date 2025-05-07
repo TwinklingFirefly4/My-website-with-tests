@@ -241,6 +241,9 @@ body {
   border-radius: 150px 0 0 100px;
   z-index: 100;
 }
+#navigation-placeholder{
+  z-index: 1000;
+}
 
 .container.active .toggle-container {
   transform: translateX(-100%);

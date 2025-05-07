@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/create-test.css">
+    <script type="module" src="js/supabase-init.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/nav.js"></script>
+    <script type="module" src="js/create-test.js"></script>
+    <title>Создание теста</title>
+</head>
+<body>
+    <div class="background"></div>
+    <div id="navigation-placeholder"></div>
+    <div class="test-creator">
+        <h1>Создать новый тест</h1>
+        
+        <!-- Основные настройки -->
+        <div class="form-section">
+          <label>Название теста:</label>
+          <input type="text" id="testTitle" required>
+          
+          <label>Описание:</label>
+          <textarea id="testDescription"></textarea>
+          
+          <label>URL обложки (из интернета):</label>
+          <input type="url" id="testCover" placeholder="https://example.com/image.jpg">
+          
+          <label>Уровень сложности:</label>
+          <select id="testDifficulty">
+            <option value="Легкий">Легкий</option>
+            <option value="Средний">Средний</option>
+            <option value="Сложный">Сложный</option>
+          </select>
+          
+          <label>Доступ:</label>
+          <select id="testAccess">
+            <option value="public">Публичный</option>
+            <option value="private">Приватный (только по ссылке)</option>
+          </select>
+        </div>
+      
+        <!-- Блок вопросов -->
+        <div id="questionsContainer">
+          <!-- Вопросы будут добавляться динамически -->
+        </div>
+        
+        <button id="addQuestionBtn">+ Добавить вопрос</button>
+        <button id="saveTestBtn">Сохранить тест</button>
+      </div>
+</body>
+</html>

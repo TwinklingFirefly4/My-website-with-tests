@@ -24,18 +24,15 @@
     <div id="navigation-placeholder"></div>
     <div class="main-container">
       <div class="content">
-        <div class="name">Какой ты программист</div>
+        <div class="name" id="test-name">Какой ты программист</div>
         <div class="container">
           <div class="results">
             <div class="test-details">
               <p class="standart-label">
-                Пройдено: <span class="time">08.12.2024 22:29</span>
+                Пройдено: <span class="time" id="time">08.12.2024 22:29</span>
               </p>
               <p class="standart-label">
-                Режим: <span class="mode-name">Викторина</span>
-              </p>
-              <p class="standart-label">
-                Автор: <span class="author-name">Сумрак Тьмы</span>
+                Режим: <span class="mode-name" id="difficulty">Викторина</span>
               </p>
             </div>
             <div class="additionaly">
@@ -44,9 +41,9 @@
                 <!-- <a href="test-page.html">К тесту</a> -->
                 <span>К тесту</span>
               </button>
-              <button class="btn statistics">
-                <img src="my-img/icons/statistic.svg" alt="" />
-                <a href="#">Статистика</a>
+              <button class="btn statistics" id="showStatsBtn">
+                <img src="my-img/icons/statistic.svg" alt="">
+                <span>Статистика</span>
               </button>
             </div>
             <div class="result-label">Результат</div>
@@ -113,10 +110,11 @@
               <a href="login-page.html">Войти</a>
             </div>
             <div class="standart-label">Комментарии</div>
-            <div class="comments" id="comments-container">
-            </div>
+            <div class="comments" id="comments-container"></div>
           </div>
-          <button id="load-more" class="btn show-more hidden">Показать ещё</button>
+          <button id="load-more" class="btn show-more hidden">
+            Показать ещё
+          </button>
         </div>
       </div>
     </div>
@@ -127,6 +125,24 @@
         <div class="creator">© WebDesign Master Catherine</div>
       </div>
     </div>
+
+    <!-- Модальное окно статистики -->
+    <div id="statsModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Статистика теста</h2>
+        <div class="stats-container">
+          <div class="stats-header">
+            <span>Диапазон баллов</span>
+            <span>% пользователей</span>
+          </div>
+          <div id="statsRanges"></div>
+          <div class="stats-meta">
+            <p>Всего прохождений: <span id="totalAttempts">0</span></p>
+            <p>Средний балл: <span id="averageScore">0</span>%</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
-
