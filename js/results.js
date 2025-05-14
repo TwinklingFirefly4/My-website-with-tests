@@ -605,14 +605,14 @@ const CommentsModule = (function () {
            <button class="like-btn ${userLiked ? "active" : ""}" data-id="${
       comment.id
     }">
-          <img src="./../my-img/icons/${
+          <img src="./my-img/icons/${
             userLiked ? "like-filled" : "like"
           }.svg" /> ${comment.likes || 0}
         </button>
         <button class="dislike-btn ${userDisliked ? "active" : ""}" data-id="${
       comment.id
     }">
-          <img src="./../my-img/icons/${
+          <img src="${basePath}my-img/icons/${
             userDisliked ? "dislike-filled" : "dislike"
           }.svg" /> ${comment.dislikes || 0}
         </button>
@@ -761,11 +761,11 @@ const CommentsModule = (function () {
     const isDisliked = data.user_disliked || reaction === "dislike";
 
     likeBtn.innerHTML = `
-      <img src="./../my-img/icons/${isLiked ? "like-filled" : "like"}.svg" />
+      <img src="./my-img/icons/${isLiked ? "like-filled" : "like"}.svg" />
       ${data.likes || 0}
     `;
     dislikeBtn.innerHTML = `
-      <img src="./../my-img/icons/${
+      <img src="./my-img/icons/${
         isDisliked ? "dislike-filled" : "dislike"
       }.svg" />
       ${data.dislikes || 0}
