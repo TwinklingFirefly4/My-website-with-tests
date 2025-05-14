@@ -605,14 +605,14 @@ const CommentsModule = (function () {
            <button class="like-btn ${userLiked ? "active" : ""}" data-id="${
       comment.id
     }">
-          <img src="${basePath}my-img/icons/${
+          <img src="./../my-img/icons/${
             userLiked ? "like-filled" : "like"
           }.svg" /> ${comment.likes || 0}
         </button>
         <button class="dislike-btn ${userDisliked ? "active" : ""}" data-id="${
       comment.id
     }">
-          <img src="${basePath}my-img/icons/${
+          <img src="./../my-img/icons/${
             userDisliked ? "dislike-filled" : "dislike"
           }.svg" /> ${comment.dislikes || 0}
         </button>
