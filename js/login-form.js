@@ -32,7 +32,8 @@ function setupPasswordToggle() {
 async function handlePasswordReset() {
   const email = document.getElementById('signin-email').value;
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/update-password.html'
+    // redirectTo: window.location.origin + '/update-password.html'
+    redirectTo: './update-password.html'
   });
 
   if (error) {
