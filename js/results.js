@@ -761,11 +761,11 @@ const CommentsModule = (function () {
     const isDisliked = data.user_disliked || reaction === "dislike";
 
     likeBtn.innerHTML = `
-      <img src="../my-img/icons/${isLiked ? "like-filled" : "like"}.svg" />
+      <img src="./../my-img/icons/${isLiked ? "like-filled" : "like"}.svg" />
       ${data.likes || 0}
     `;
     dislikeBtn.innerHTML = `
-      <img src="../my-img/icons/${
+      <img src="./../my-img/icons/${
         isDisliked ? "dislike-filled" : "dislike"
       }.svg" />
       ${data.dislikes || 0}
