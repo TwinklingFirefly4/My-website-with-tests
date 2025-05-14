@@ -1,69 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="HTML, CSS, Programming, Tests, Quiz" />
-    <meta name="author" content="Catherine" />
-    <link rel="icon" href="my-img/icons/icons8-firefly-58.png" />
-    <!--библиотеки для плавного скролла-->
-    <script src="libs/gsap/gsap.min.js" defer></script>
-    <script src="libs/gsap/ScrollTrigger.min.js" defer></script>
-    <script src="libs/gsap/ScrollSmoother.min.js" defer></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="HTML, CSS, Programming, Tests, Quiz" />
+  <meta name="author" content="Catherine" />
+  <link rel="icon" href="my-img/icons/icons8-firefly-58.png" />
+  
+  <!-- Библиотеки GSAP для анимации и плавного скролла -->
+  <script src="libs/gsap/gsap.min.js" defer></script>
+  <script src="libs/gsap/ScrollTrigger.min.js" defer></script>
+  <script src="libs/gsap/ScrollSmoother.min.js" defer></script>
 
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/nav.css" />
-    <script type="module" src="js/supabase-init.js"></script>
-    <script type="module" src="js/auth.js"></script>
-    <script type="module" src="js/nav.js"></script>
-    <script src="./js/app.js" defer></script>
-    <title>Fairy Forest</title>
-  </head>
-  <body>
-    <div id="navigation-placeholder"></div>
-    <div class="wrapper">
-      <!--обертка контейнера-->
-      <div class="content">
-        <header class="main-header" id="header">
-          <div class="layers">
-            <!--блок, в котором будут различные слои -->
-            <div class="layer__header">
-              <div class="layers__caption">Добро пожаловать в</div>
-              <div class="layers__title">Fairy Forest</div>
-            </div>
-            <div
-              class="layer layers__base"
-              style="background-image: url(img/layer-base.png)"
-            ></div>
-            <div
-              class="layer layers__middle"
-              style="background-image: url(img/layer-middle.png)"
-            ></div>
-            <div
-              class="layer layers__front"
-              style="background-image: url(img/layer-front.png)"
-            ></div>
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/nav.css" />
+  
+  <!-- Скрипты -->
+  <script type="module" src="js/supabase-init.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/nav.js"></script>
+  <script src="./js/app.js" defer></script>
+  
+  <title>Fairy Forest</title>
+</head>
+<body>
+  <div id="navigation-placeholder"></div>
+  
+  <div class="wrapper">
+    <div class="content">
+      <!-- Параллакс-заголовок -->
+      <header class="main-header" id="header">
+        <div class="layers">
+          <div class="layer__header">
+            <div class="layers__caption">Добро пожаловать в</div>
+            <div class="layers__title">Fairy Forest</div>
           </div>
-        </header>
-        <article
-          class="main-article"
-          id="main-article"
-          style="
-            background-image: url(./my-img/small_img/field-with-fireflies.jpg);
-          "
-        >
-          <div class="main-article__content">
-            <h2 class="main-article__header">
-              На сайте тебя ждут увлекательные тесты на разные темы!
-            </h2>
-            <p class="main-article__p">
-              Готов узнать, насколько хорошо ты разбираешься в разных областях? Давай проверим!
-            </p>
-
-            <a href="./list-of-tests.html">К тестам</a>
-          </div>
-        </article>
-      </div>
+          <!-- Слои параллакса -->
+          <div class="layer layers__base" style="background-image: url(img/layer-base.png)"></div>
+          <div class="layer layers__middle" style="background-image: url(img/layer-middle.png)"></div>
+          <div class="layer layers__front" style="background-image: url(img/layer-front.png)"></div>
+        </div>
+      </header>
+      
+      <!-- Основной контент -->
+      <article class="main-article" id="main-article" style="background-image: url(./my-img/small_img/field-with-fireflies.jpg)">
+        <div class="main-article__content">
+          <h2 class="main-article__header">На сайте тебя ждут увлекательные тесты на разные темы!</h2>
+          <p class="main-article__p">Готов узнать, насколько хорошо ты разбираешься в разных областях? Давай проверим!</p>
+          <a href="./list-of-tests.html">К тестам</a>
+        </div>
+      </article>
     </div>
-  </body>
+  </div>
+</body>
 </html>

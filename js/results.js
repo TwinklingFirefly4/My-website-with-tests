@@ -16,6 +16,9 @@ import { authState } from "./auth-state.js";
 const resultsData = JSON.parse(localStorage.getItem("testResults"));
 
 // Настройка кнопки "К тесту"
+const basePath = window.location.hostname.includes("github.io")
+  ? `${window.location.origin}/My-website-with-tests/`
+  : "./";
 document
   .getElementById("returnToTestBtn")
   .addEventListener("click", function () {
@@ -28,17 +31,9 @@ document
       return;
     }
 
-    const basePath = window.location.hostname.includes("github.io")
-      ? `${window.location.origin}/My-website-with-tests/`
-      : "./";
 
     window.location.href = `${basePath}test-page.html?test=${testId}`;
   });
-
-const score = resultsData.score;
-let resultImage = document.getElementById("result-image");
-let message;
-let addMessage = "ddd";
 
 function showConfetti() {
   confetti({
@@ -610,14 +605,14 @@ const CommentsModule = (function () {
            <button class="like-btn ${userLiked ? "active" : ""}" data-id="${
       comment.id
     }">
-          <img src="../my-img/icons/${
+          <img src="${basePath}my-img/icons/${
             userLiked ? "like-filled" : "like"
           }.svg" /> ${comment.likes || 0}
         </button>
         <button class="dislike-btn ${userDisliked ? "active" : ""}" data-id="${
       comment.id
     }">
-          <img src="../my-img/icons/${
+          <img src="${basePath}my-img/icons/${
             userDisliked ? "dislike-filled" : "dislike"
           }.svg" /> ${comment.dislikes || 0}
         </button>

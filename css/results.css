@@ -395,9 +395,6 @@ body {
 .hidden {
   display: none;
 }
-
-/* statistic modal */
-/* Стили модального окна */
 /* Стили модального окна */
 .modal {
   display: none;
@@ -467,11 +464,6 @@ body {
 .stats-meta p {
   margin: var(--space-xs) 0;
 }
-
-/* h2 {
-  color: var(--color-dark-green);
-  margin-bottom: var(--space-sm);
-} */
 
 /* Кнопка для открытия статистики */
 .stats-btn {

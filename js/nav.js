@@ -44,8 +44,5 @@ document.addEventListener("DOMContentLoaded", function () {
       updateMenuPosition();
       document.addEventListener('click', handleClickOutside);
       window.addEventListener('resize', handleResize);
-      
-      // Инициализация навигации после загрузки
-      // setTimeout(updateNavigation, 100);
     });
 });

@@ -329,13 +329,6 @@ async function saveTestResults(score, results) {
       .gte("max_score", score) // score <= max_score
       .single();
 
-    // const { data: message, error: messageError } = await supabase
-    //   .from("result_messages")
-    //   .select("*")
-    //   .gte("min_score", score)
-    //   .lte("max_score", score)
-    //   .single();
-
     if (messageError || !message) {
       console.log(score);
       console.log(roundedScore);

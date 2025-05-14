@@ -65,7 +65,7 @@ main {
   padding: 20px 0;
   flex: 2;
   margin: auto;
-  margin-top: calc(var(--index) * 3);
+  margin-top: calc(var(--index) * 4);
 }
 
 .page-title {
@@ -132,64 +132,6 @@ main {
   color: var(--color-yellow);
 }
 
-/* Стили для сообщения об ошибке */
-/* .error-message {
-  padding: 1rem;
-  background-color: #ffebee;
-  color: #c62828;
-  border-radius: 4px;
-  margin: 1rem 0;
-  text-align: center;
-}
-
-.tests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.test-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.test-card:hover {
-  transform: translateY(-5px);
-}
-
-.test-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.test-content {
-  padding: 15px;
-}
-
-.test-title {
-  margin: 0 0 10px;
-  font-size: 1.2rem;
-}
-
-.test-description {
-  margin: 0 0 10px;
-  color: #555;
-  font-size: 0.9rem;
-}
-
-.test-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: #777;
-} */
-
 /* Анимация загрузки */
 .loader {
   display: flex;
@@ -227,4 +169,15 @@ main {
   .page-title {
     font-size: calc(var(--index) * 1.5);
   }
+
+  .test-title {
+    font-size: calc(var(--test-card-title)*2);
+  }
+  .test-description {
+    font-size: calc(var(--index) * 1.2);
+  }
+  
+  .test-meta {
+    font-size: calc(var(--index));
+  }  
 }
